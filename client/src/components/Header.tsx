@@ -1,0 +1,38 @@
+import { Bell, Search, Globe, ChevronDown } from 'lucide-react';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+const Header = () => {
+  return (
+    <header className="h-24 px-8 border-b border-white/5 flex items-center justify-between sticky top-0 bg-slate-950/50 backdrop-blur-xl z-20">
+      <div className="flex items-center gap-6 flex-1">
+        <div className="relative group max-w-md w-full">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary-400 transition-colors" size={18} />
+          <input 
+            type="text" 
+            placeholder="Search proposals, members, or transactions..." 
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all font-medium text-sm"
+          />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-5">
+        <button className="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-slate-400 hover:text-white transition-all relative">
+          <Bell size={20} />
+          <span className="absolute top-2.5 right-2.5 w-3 h-3 bg-accent-500 border-2 border-slate-950 rounded-full"></span>
+        </button>
+
+        <button className="flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all">
+          <Globe size={18} className="text-primary-400" />
+          <span className="text-sm font-semibold">Ethereum</span>
+          <ChevronDown size={14} className="text-slate-500" />
+        </button>
+
+        <div className="h-10 w-[1px] bg-white/5 mx-2"></div>
+
+        <ConnectButton />
+      </div>
+    </header>
+  );
+};
+
+export default Header;
