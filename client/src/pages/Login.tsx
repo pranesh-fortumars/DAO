@@ -44,32 +44,33 @@ const Login = () => {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden"
+        className="glass-card max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-primary-500/10"
       >
-        <div className="p-10 bg-primary-600/10 flex flex-col justify-center border-r border-white/5">
-          <h2 className="text-4xl font-bold mb-6 italic underline">EduMentor</h2>
-          <p className="text-slate-400 mb-8 leading-relaxed">
-            Join the decentralized education revolution. Select your role and connect your identity to start participating in DAO governance.
+        <div className="p-10 bg-gradient-to-br from-primary-600/10 to-accent-950/20 flex flex-col justify-center border-r border-white/5">
+          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary-500 mb-2">Tamil Nadu Educational Trust</span>
+          <h2 className="text-4xl font-bold mb-6 italic underline leading-tight">KALAM EDUCATION DAO</h2>
+          <p className="text-slate-400 mb-8 leading-relaxed italic text-sm">
+            Empowering the students of Tamil Nadu through decentralized transparency. Select your gateway and enter the Mandram.
           </p>
           
           <div className="space-y-4">
             <RoleButton 
               icon={<Shield size={20} />} 
-              label="Admin Portal" 
+              label="Administrator Portal" 
               onClick={() => handleGoogleSignIn('ADMIN')} 
-              color="bg-rose-500/20 text-rose-400 border-rose-500/20"
+              color="bg-primary-900/40 text-primary-400 border-primary-500/30"
             />
             <RoleButton 
               icon={<GraduationCap size={20} />} 
               label="Mentor Access" 
               onClick={() => handleGoogleSignIn('MENTOR')} 
-              color="bg-primary-500/20 text-primary-400 border-primary-500/20"
+              color="bg-primary-500/20 text-primary-300 border-primary-500/20"
             />
             <RoleButton 
               icon={<School size={20} />} 
               label="School Governance" 
               onClick={() => handleGoogleSignIn('SCHOOL')} 
-              color="bg-emerald-500/20 text-emerald-400 border-emerald-500/20"
+              color="bg-emerald-900/40 text-emerald-400 border-emerald-500/20"
             />
           </div>
         </div>

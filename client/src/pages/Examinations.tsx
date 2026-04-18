@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 import { 
-  ClipboardList, 
   Calendar, 
   Clock, 
   ShieldCheck, 
   Star,
   ArrowRight,
-  Search,
   BookOpen,
   Trophy
 } from 'lucide-react';
@@ -27,8 +25,8 @@ const Examinations = () => {
     <div className="space-y-8 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-['Outfit'] font-bold">Institutional Examinations</h1>
-          <p className="text-slate-500 mt-2 font-medium">Standardized assessments and on-chain verified results.</p>
+          <h1 className="text-4xl font-['Outfit'] font-bold underline italic">Examination Center</h1>
+          <p className="text-slate-500 mt-2 font-medium italic underline">Standardized assessments and on-chain verified results from Anna Univ Sync.</p>
         </div>
         <button className="btn-primary">
           <BookOpen size={18} />

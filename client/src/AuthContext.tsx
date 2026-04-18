@@ -10,6 +10,7 @@ interface AuthContextType {
   role: UserRole;
   loading: boolean;
   setRole: (role: UserRole) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -17,6 +18,7 @@ const AuthContext = createContext<AuthContextType>({
   role: null,
   loading: true,
   setRole: async () => {},
+  logout: async () => {},
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -37,23 +39,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setRoleState(newRole);
     }
   };
-
+  const logout = async () => {
+    await auth.signOut();
+    setUser(null);
+    setRoleState(null);
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        await fetchUserRole(currentUser.uid);
-      } else {
-        setRoleState(null);
+      try {
+        setUser(currentUser);
+        if (currentUser) {
+          await fetchUserRole(currentUser.uid);
+        } else {
+          setRoleState(null);
+        }
+      } catch (error) {
+        console.error("Auth initialization error:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, role, loading, setRole }}>
+    <AuthContext.Provider value={{ user, role, loading, setRole, logout }}>
       {children}
     </AuthContext.Provider>
   );

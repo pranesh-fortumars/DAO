@@ -20,8 +20,8 @@ const Finance = () => {
     <div className="space-y-8 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-['Outfit'] font-bold">Financial Operations</h1>
-          <p className="text-slate-500 mt-2 font-medium">Transparent institutional economy powered by DAO Treasury.</p>
+          <h1 className="text-4xl font-['Outfit'] font-bold underline italic">Financial Operations</h1>
+          <p className="text-slate-500 mt-2 font-medium italic underline">Transparent institutional economy powered by Kalam DAO Treasury.</p>
         </div>
         <div className="flex gap-3">
           <button className="btn-secondary">
@@ -43,10 +43,10 @@ const Finance = () => {
                  <div className="p-3 bg-primary-500/20 rounded-xl">
                    <Landmark className="text-primary-400" size={24} />
                  </div>
-                 <div>
-                   <h3 className="text-lg font-bold">Wallet Balance</h3>
-                   <p className="text-xs text-slate-500">Available for institutional services</p>
-                 </div>
+                  <div>
+                    <h3 className="text-lg font-bold">Wallet Balance</h3>
+                    <p className="text-xs text-slate-500">Available for institutional services</p>
+                  </div>
                </div>
                <div className="flex flex-col gap-1">
                  <span className="text-4xl font-bold font-['Outfit']">24,500 GDAO</span>
@@ -60,10 +60,10 @@ const Finance = () => {
 
              <div className="glass-card p-8 flex flex-col justify-between border-white/5">
                 <div>
-                   <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold">Next Fee Term</h4>
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">In 12 Days</span>
-                   </div>
+                    <div className="flex items-center justify-between mb-2">
+                       <h4 className="font-bold">Next Fee Term</h4>
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">In 12 Days</span>
+                    </div>
                    <p className="text-2xl font-bold font-['Outfit']">$1,250.00</p>
                 </div>
                 <div className="space-y-3 mt-6">

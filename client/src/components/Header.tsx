@@ -1,7 +1,17 @@
-import { Bell, Search, Globe, ChevronDown } from 'lucide-react';
+import { Bell, Search, Globe, ChevronDown, LogOut } from 'lucide-react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   return (
     <header className="h-24 px-8 border-b border-white/5 flex items-center justify-between sticky top-0 bg-slate-950/50 backdrop-blur-xl z-20">
       <div className="flex items-center gap-6 flex-1">
@@ -30,6 +40,16 @@ const Header = () => {
         <div className="h-10 w-[1px] bg-white/5 mx-2"></div>
 
         <ConnectButton />
+
+        {user && (
+          <button 
+            onClick={handleLogout}
+            className="p-3 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 rounded-xl text-rose-400 hover:text-rose-300 transition-all flex items-center gap-2 group"
+            title="Log Out"
+          >
+            <LogOut size={20} className="group-hover:translate-x-1 transition-transform" />
+          </button>
+        )}
       </div>
     </header>
   );

@@ -36,22 +36,22 @@ const menuGroups = [
   {
     title: 'Governance',
     items: [
-      { icon: FileText, label: 'DAO Proposals', path: '/proposals' },
+      { icon: FileText, label: 'Proposals', path: '/proposals' },
       { icon: ShieldCheck, label: 'Compliance', path: '/compliance' },
-      { icon: MessageSquare, label: 'Town Hall', path: '/forum' },
+      { icon: MessageSquare, label: 'Forum', path: '/forum' },
     ]
   },
   {
     title: 'Financials',
     items: [
-      { icon: Wallet, label: 'Institutional Treasury', path: '/treasury' },
-      { icon: CreditCard, label: 'Fee & Grants', path: '/finance' },
+      { icon: Wallet, label: 'Treasury', path: '/treasury' },
+      { icon: CreditCard, label: 'Kattanam', path: '/finance' },
     ]
   },
   {
     title: 'Account',
     items: [
-      { icon: Award, label: 'Certifications', path: '/certificates' },
+      { icon: Award, label: 'Certificates', path: '/certificates' },
       { icon: Settings, label: 'Settings', path: '/settings' },
     ]
   }
@@ -65,10 +65,10 @@ const Sidebar = () => {
           <Zap className="text-white fill-current" size={24} />
         </div>
         <div className="flex flex-col">
-          <span className="font-['Outfit'] font-bold text-xl tracking-tight bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent">
-            EDU CONNECT
+          <span className="font-['Outfit'] font-bold text-xl tracking-tight bg-gradient-to-br from-primary-400 to-primary-600 bg-clip-text text-transparent">
+            KALAM DAO
           </span>
-          <span className="text-[10px] uppercase tracking-widest text-primary-500 font-bold">DAO Ecosystem</span>
+          <span className="text-[10px] uppercase tracking-widest text-primary-500 font-bold italic">Tamil Nadu Trust</span>
         </div>
       </div>
 
