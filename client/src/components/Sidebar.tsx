@@ -8,17 +8,53 @@ import {
   ShieldCheck,
   Zap,
   BookOpen,
-  Award
+  Award,
+  Library,
+  CreditCard,
+  MessageSquare,
+  ClipboardList,
+  UserCheck
 } from 'lucide-react';
 
-const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-  { icon: BookOpen, label: 'Courses', path: '/courses' },
-  { icon: FileText, label: 'Governance', path: '/proposals' },
-  { icon: Award, label: 'Certificates', path: '/certificates' },
-  { icon: Wallet, label: 'Treasury', path: '/treasury' },
-  { icon: BarChart3, label: 'Analytics', path: '/analytics' },
-  { icon: Settings, label: 'Settings', path: '/settings' },
+const menuGroups = [
+  {
+    title: 'Overview',
+    items: [
+      { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+      { icon: BarChart3, label: 'Analytics', path: '/analytics' },
+    ]
+  },
+  {
+    title: 'Academics',
+    items: [
+      { icon: BookOpen, label: 'Curriculum', path: '/courses' },
+      { icon: UserCheck, label: 'Attendance', path: '/attendance' },
+      { icon: Library, label: 'Digital Library', path: '/library' },
+      { icon: ClipboardList, label: 'Examinations', path: '/exams' },
+    ]
+  },
+  {
+    title: 'Governance',
+    items: [
+      { icon: FileText, label: 'DAO Proposals', path: '/proposals' },
+      { icon: ShieldCheck, label: 'Compliance', path: '/compliance' },
+      { icon: MessageSquare, label: 'Town Hall', path: '/forum' },
+    ]
+  },
+  {
+    title: 'Financials',
+    items: [
+      { icon: Wallet, label: 'Institutional Treasury', path: '/treasury' },
+      { icon: CreditCard, label: 'Fee & Grants', path: '/finance' },
+    ]
+  },
+  {
+    title: 'Account',
+    items: [
+      { icon: Award, label: 'Certifications', path: '/certificates' },
+      { icon: Settings, label: 'Settings', path: '/settings' },
+    ]
+  }
 ];
 
 const Sidebar = () => {
@@ -36,26 +72,30 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <nav className="flex-1 px-4 py-4 space-y-1">
-        {menuItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) => `
-              flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group
-              ${isActive 
-                ? 'bg-primary-500/10 text-primary-400 border border-primary-500/20' 
-                : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'}
-            `}
-          >
-            <item.icon size={22} className="transition-transform duration-300 group-hover:scale-110" />
-            <span className="font-medium">{item.label}</span>
-            {item.path === '/proposals/create' && (
-              <span className="ml-auto bg-primary-500/20 text-primary-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-primary-500/20">
-                NEW
-              </span>
-            )}
-          </NavLink>
+      <nav className="flex-1 px-4 py-4 space-y-8 overflow-y-auto custom-scrollbar">
+        {menuGroups.map((group) => (
+          <div key={group.title} className="space-y-2">
+            <h3 className="px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-4">
+              {group.title}
+            </h3>
+            <div className="space-y-1">
+              {group.items.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) => `
+                    flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 group
+                    ${isActive 
+                      ? 'bg-primary-500/10 text-primary-400 border border-primary-500/20' 
+                      : 'text-slate-500 hover:text-white hover:bg-white/5 border border-transparent'}
+                  `}
+                >
+                  <item.icon size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                  <span className="font-semibold text-sm">{item.label}</span>
+                </NavLink>
+              ))}
+            </div>
+          </div>
         ))}
       </nav>
 

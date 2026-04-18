@@ -1,152 +1,209 @@
-import { motion } from 'framer-motion';
 import { 
   Users, 
-  FileCheck, 
-  TrendingUp, 
-  Clock, 
-  ChevronRight,
-  Database
+  Vote, 
+  Zap,
+  TrendingUp,
+  ShieldCheck,
+  CreditCard,
+  GraduationCap,
+  Calendar,
+  AlertCircle
 } from 'lucide-react';
-import { 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer 
-} from 'recharts';
-
-const data = [
-  { name: 'Mon', value: 4000 },
-  { name: 'Tue', value: 3000 },
-  { name: 'Wed', value: 5000 },
-  { name: 'Thu', value: 4780 },
-  { name: 'Fri', value: 5890 },
-  { name: 'Sat', value: 5390 },
-  { name: 'Sun', value: 6490 },
-];
-
-const stats = [
-  { label: 'Total Value Locked', value: '$2,480,000', change: '+12.5%', icon: Database, color: 'text-primary-400', bg: 'bg-primary-500/10' },
-  { label: 'Courses Completed', value: '452', change: '+12 new', icon: FileCheck, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-  { label: 'Governance Tokens Minted', value: '1.2M GDAO', change: '+45k/mo', icon: TrendingUp, color: 'text-accent-400', bg: 'bg-accent-500/10' },
-  { label: 'Active Learners', value: '3,842', change: '+5.4%', icon: Users, color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
-];
+import { motion } from 'framer-motion';
 
 const Dashboard = () => {
   return (
     <div className="space-y-8 pb-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl">EduConnect Dashboard</h1>
-          <p className="text-slate-500 mt-2 font-medium">Welcome back, Scholar. Track your learning progress and DAO governance impact.</p>
+          <h1 className="text-4xl font-['Outfit'] font-bold italic underline">EduMentor Command Center</h1>
+          <p className="text-slate-500 mt-2 font-medium italic underline">Institutional Governance & Learning Management System</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="btn-secondary">Export Data</button>
-          <button className="btn-primary">Connect Logic</button>
+          <button className="btn-secondary">Export Analytics</button>
+          <button className="btn-primary">Audit Reports</button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, idx) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 }}
-            className="glass-card p-6 glass-card-hover border-white/5"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div className={`${stat.bg} p-3 rounded-xl`}>
-                <stat.icon className={stat.color} size={24} />
-              </div>
-              <span className={`text-sm font-bold ${stat.change.startsWith('+') ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {stat.change}
-              </span>
-            </div>
-            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider">{stat.label}</h3>
-            <p className="text-3xl mt-1">{stat.value}</p>
-          </motion.div>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <StatCard 
+          label="Institution Trust Score" 
+          value="98.4" 
+          change="+2.4%" 
+          icon={<ShieldCheck className="text-emerald-400" />} 
+          description="Community governed"
+        />
+        <StatCard 
+          label="Active Researchers" 
+          value="156" 
+          change="+12" 
+          icon={<Users className="text-primary-400" />} 
+          description="Grant enabled"
+        />
+        <StatCard 
+          label="Treasury TVL" 
+          value="1.2M GDAO" 
+          change="+$45k" 
+          icon={<CreditCard className="text-accent-400" />} 
+          description="DAO controlled"
+        />
+        <StatCard 
+          label="Governance Participation" 
+          value="84%" 
+          change="+5%" 
+          icon={<Vote className="text-amber-400" />} 
+          description="Quorum reached"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 glass-card p-8 border-white/5">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-2xl">Treasury Growth</h2>
-              <p className="text-slate-500 text-sm mt-1">Institutional asset flow over the last 7 days</p>
-            </div>
-            <select className="bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none">
-              <option>Last 7 Days</option>
-              <option>Last 30 Days</option>
-              <option>Year to Date</option>
-            </select>
+        <div className="lg:col-span-2 space-y-8">
+          <div className="glass-card p-10 relative overflow-hidden group border-white/5">
+             <div className="absolute top-0 right-0 p-8">
+               <Zap className="text-primary-500/10 w-32 h-32 rotate-12 transition-all group-hover:scale-110 group-hover:text-primary-500/20" />
+             </div>
+             <div className="relative z-10 max-w-lg">
+                <span className="bg-primary-500/10 text-primary-400 text-[10px] font-bold px-3 py-1 rounded-full border border-primary-500/20 uppercase tracking-widest">Major institutional Grant</span>
+                <h2 className="text-3xl font-bold mt-6 leading-tight">Decentralized Syllabus v4.2 is now live for voting.</h2>
+                <p className="text-slate-400 mt-4 leading-relaxed font-medium">The Academic Board has proposed 12 new core modules for the Blockchain Engineering curriculum. Participate in the governance vote to earn participation tokens.</p>
+                <div className="flex gap-4 mt-8">
+                   <button className="btn-primary">View Proposal</button>
+                   <button className="btn-secondary">Read Syllabus</button>
+                </div>
+             </div>
           </div>
-          <div className="h-[350px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={data}>
-                <defs>
-                  <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
-                <XAxis 
-                  dataKey="name" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: '#64748b', fontSize: 12 }}
-                  dy={10}
-                />
-                <YAxis 
-                  hide={true}
-                />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }}
-                  itemStyle={{ color: '#0ea5e9' }}
-                />
-                <Area 
-                  type="monotone" 
-                  dataKey="value" 
-                  stroke="#0ea5e9" 
-                  strokeWidth={3}
-                  fillOpacity={1} 
-                  fill="url(#colorValue)" 
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+
+          <div className="glass-card border-white/5">
+            <div className="p-6 border-b border-white/5 flex items-center justify-between">
+               <h3 className="font-bold text-lg flex items-center gap-2 font-['Outfit']">
+                 <Calendar className="text-primary-400" size={20} />
+                 Academic Timeline
+               </h3>
+               <button className="text-xs font-bold text-primary-400 hover:text-primary-300 transition-colors">Full Schedule</button>
+            </div>
+            <div className="p-6 space-y-6">
+               <TimelineItem 
+                 time="Today, 10:00 AM" 
+                 title="DeFi Architecture Seminar" 
+                 role="Dr. Sarah Chen" 
+                 status="Ongoing" 
+                 color="bg-emerald-500" 
+               />
+               <TimelineItem 
+                 time="Tomorrow, 02:00 PM" 
+                 title="Quarterly Governance Town Hall" 
+                 role="Consensus Council" 
+                 status="Upcoming" 
+                 color="bg-primary-500" 
+               />
+               <TimelineItem 
+                 time="Apr 25, 2026" 
+                 title="Final Project Submission" 
+                 role="Self-Managed" 
+                 status="Phase 1" 
+                 color="bg-amber-500" 
+               />
+            </div>
           </div>
         </div>
 
-        <div className="glass-card p-8 border-white/5 flex flex-col">
-          <h2 className="text-2xl mb-6">Recent Activity</h2>
-          <div className="space-y-6 flex-1">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="flex gap-4 group cursor-pointer">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-primary-500/20 transition-colors">
-                  <Clock size={18} className="text-slate-400 group-hover:text-primary-400" />
-                </div>
-                <div className="flex-1 border-b border-white/5 pb-4">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-semibold">Proposal #240 Passed</span>
-                    <span className="text-[10px] text-slate-500">2h ago</span>
-                  </div>
-                  <p className="text-xs text-slate-500 line-clamp-1">Treasury allocation for Infrastructure Upgrade V3</p>
-                </div>
-                <ChevronRight size={14} className="text-slate-700 self-center" />
+        <div className="space-y-8">
+           <div className="glass-card p-8 border-white/5">
+              <h4 className="font-bold text-lg mb-6 flex items-center gap-2 font-['Outfit']">
+                <GraduationCap className="text-primary-400" size={20} />
+                Student Standing
+              </h4>
+              <div className="space-y-6">
+                 <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1">Current CGPA</p>
+                      <p className="text-2xl font-bold">3.94 / 4.0</p>
+                    </div>
+                    <div className="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+                      <TrendingUp size={20} className="text-emerald-400" />
+                    </div>
+                 </div>
+                 <div className="space-y-2">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Attendance Intensity</p>
+                    <div className="flex items-center gap-4">
+                       <div className="flex-1 bg-white/5 h-2 rounded-full overflow-hidden">
+                          <div className="bg-primary-500 h-full w-[94%]" />
+                       </div>
+                       <span className="text-sm font-bold text-white">94%</span>
+                    </div>
+                 </div>
               </div>
-            ))}
-          </div>
-          <button className="w-full mt-6 py-3 text-sm font-bold text-primary-400 hover:text-primary-300 transition-colors bg-primary-500/5 rounded-xl border border-primary-500/10">
-            View All Historical Data
-          </button>
+           </div>
+
+           <div className="glass-card p-8 bg-rose-500/5 border-rose-500/10">
+              <div className="flex items-center gap-3 text-rose-400 mb-4 font-['Outfit']">
+                 <AlertCircle size={20} />
+                 <h4 className="font-bold">Pending Institutional Actions</h4>
+              </div>
+              <ul className="space-y-4">
+                 <PendingAction label="Library Fine Due" time="2 days left" />
+                 <PendingAction label="Fee Payment Pending" time="12 days left" />
+                 <PendingAction label="Vote on Proposal #88" time="Expiring soon" red />
+              </ul>
+           </div>
+
+           <div className="glass-card p-8 border-white/5 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary-500/5 rounded-full -mr-12 -mt-12 transition-all group-hover:scale-125"></div>
+              <h4 className="font-bold text-white mb-2 font-['Outfit']">Certify Competency</h4>
+              <p className="text-xs text-slate-500 leading-relaxed mb-6 italic">You have completed 100% of the Blockchain v4 curriculum. You are eligible for an on-chain NFT certificate.</p>
+              <button className="w-full py-3 bg-primary-500 hover:bg-primary-400 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-primary-500/20">Claim NFT Certificate</button>
+           </div>
         </div>
       </div>
     </div>
   );
 };
+
+const StatCard = ({ label, value, change, icon, description }: any) => (
+  <motion.div 
+    whileHover={{ y: -5 }}
+    className="glass-card p-6 border-white/5 relative overflow-hidden"
+  >
+    <div className="relative z-10 flex flex-col gap-4">
+      <div className="flex items-center justify-between">
+        <div className="p-2.5 bg-white/5 rounded-xl border border-white/10">
+          {icon}
+        </div>
+        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${change.startsWith('+') ? 'bg-emerald-500/10 text-emerald-400' : 'bg-primary-500/10 text-primary-400'}`}>
+          {change}
+        </span>
+      </div>
+      <div>
+        <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">{label}</p>
+        <h3 className="text-2xl font-bold font-['Outfit'] mt-1">{value}</h3>
+      </div>
+      <p className="text-[10px] text-slate-600 font-medium italic">{description}</p>
+    </div>
+  </motion.div>
+);
+
+const TimelineItem = ({ time, title, role, status, color }: any) => (
+  <div className="flex gap-4 relative group">
+    <div className="flex flex-col items-center">
+      <div className={`w-3 h-3 rounded-full mt-1.5 ${color} shadow-lg shadow-current`} />
+      <div className="w-[1px] flex-1 bg-white/5 mt-2" />
+    </div>
+    <div className="pb-6">
+      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1">{time}</p>
+      <h4 className="font-bold text-white group-hover:text-primary-400 transition-colors">{title}</h4>
+      <div className="flex items-center gap-3 mt-2">
+         <span className="text-[10px] text-slate-500 font-medium px-2 py-0.5 bg-white/5 rounded-md">{role}</span>
+         <span className={`text-[10px] font-bold ${color.replace('bg-', 'text-')}`}>{status}</span>
+      </div>
+    </div>
+  </div>
+);
+
+const PendingAction = ({ label, time, red }: any) => (
+  <li className="flex items-center justify-between text-xs transition-transform hover:translate-x-1 duration-300 cursor-pointer">
+    <span className="text-slate-400 font-medium">{label}</span>
+    <span className={`font-bold ${red ? 'text-rose-400' : 'text-slate-500'}`}>{time}</span>
+  </li>
+);
 
 export default Dashboard;

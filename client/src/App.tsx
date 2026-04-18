@@ -10,6 +10,10 @@ import Settings from './pages/Settings';
 import Courses from './pages/Courses';
 import Certificates from './pages/Certificates';
 import Login from './pages/Login';
+import Attendance from './pages/Attendance';
+import Examinations from './pages/Examinations';
+import Finance from './pages/Finance';
+import Library from './pages/Library';
 import { useAuth } from './AuthContext';
 
 function App() {
@@ -40,6 +44,10 @@ function App() {
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" replace />} />
               <Route path="/courses" element={user ? <Courses /> : <Navigate to="/login" replace />} />
+              <Route path="/attendance" element={user ? <Attendance /> : <Navigate to="/login" replace />} />
+              <Route path="/exams" element={user ? <Examinations /> : <Navigate to="/login" replace />} />
+              <Route path="/finance" element={user ? <Finance /> : <Navigate to="/login" replace />} />
+              <Route path="/library" element={user ? <Library /> : <Navigate to="/login" replace />} />
               <Route path="/proposals" element={user ? <Proposals /> : <Navigate to="/login" replace />} />
               <Route path="/proposals/create" element={user ? <CreateProposal /> : <Navigate to="/login" replace />} />
               <Route path="/certificates" element={user ? <Certificates /> : <Navigate to="/login" replace />} />
