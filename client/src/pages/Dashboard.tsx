@@ -3,11 +3,9 @@ import {
   Users, 
   FileCheck, 
   TrendingUp, 
-  ArrowUpRight, 
   Clock, 
   ChevronRight,
-  Database,
-  PieChart as PieChartIcon
+  Database
 } from 'lucide-react';
 import { 
   AreaChart, 

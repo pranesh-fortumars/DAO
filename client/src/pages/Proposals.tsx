@@ -7,8 +7,7 @@ import {
   Clock, 
   XCircle,
   ArrowRight,
-  User,
-  ExternalLink
+  User
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

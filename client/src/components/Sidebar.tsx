@@ -9,7 +9,6 @@ import {
   ShieldCheck,
   Zap
 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
