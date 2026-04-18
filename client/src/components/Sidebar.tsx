@@ -13,7 +13,8 @@ import {
   CreditCard,
   MessageSquare,
   ClipboardList,
-  UserCheck
+  UserCheck,
+  X
 } from 'lucide-react';
 
 const menuGroups = [
@@ -57,19 +58,31 @@ const menuGroups = [
   }
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
   return (
-    <aside style={{ backgroundColor: 'var(--bg-sidebar)', borderColor: 'var(--border-main)' }} className="w-72 h-screen glass-card !rounded-none !border-y-0 !border-l-0 border-r flex flex-col z-20 sticky top-0">
-      <div className="p-8 flex items-center gap-3">
-        <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
-          <Zap className="text-white fill-current" size={24} />
+    <aside 
+      style={{ backgroundColor: 'var(--bg-sidebar)', borderColor: 'var(--border-main)' }} 
+      className={`
+        fixed inset-y-0 left-0 w-72 h-screen glass-card !rounded-none !border-y-0 !border-l-0 border-r flex flex-col z-40 
+        transition-transform duration-300 lg:translate-x-0 lg:static lg:h-screen
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}
+    >
+      <div className="p-8 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+            <Zap className="text-white fill-current" size={24} />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-['Outfit'] font-bold text-xl tracking-tight bg-gradient-to-br from-primary-400 to-primary-600 bg-clip-text text-transparent">
+              KALAM DAO
+            </span>
+            <span className="text-[10px] uppercase tracking-widest text-primary-500 font-bold italic">Tamil Nadu Trust</span>
+          </div>
         </div>
-        <div className="flex flex-col">
-          <span className="font-['Outfit'] font-bold text-xl tracking-tight bg-gradient-to-br from-primary-400 to-primary-600 bg-clip-text text-transparent">
-            KALAM DAO
-          </span>
-          <span className="text-[10px] uppercase tracking-widest text-primary-500 font-bold italic">Tamil Nadu Trust</span>
-        </div>
+        <button onClick={onClose} className="lg:hidden p-2 hover:bg-white/5 rounded-lg text-slate-500">
+          <X size={20} />
+        </button>
       </div>
 
       <nav className="flex-1 px-4 py-4 space-y-8 overflow-y-auto custom-scrollbar">

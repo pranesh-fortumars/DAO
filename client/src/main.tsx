@@ -25,8 +25,8 @@ import { AuthProvider } from './AuthContext';
 import { ThemeProvider } from './ThemeContext';
 
 const config = getDefaultConfig({
-  appName: 'Enterprise DAO',
-  projectId: 'YOUR_PROJECT_ID', // Usually from WalletConnect Cloud
+  appName: 'Kalam Education DAO',
+  projectId: 'f4f1a26d17b4474776e033e56f6634b3', // Placeholder, please use your own from cloud.walletconnect.com
   chains: [mainnet, polygon, optimism, arbitrum, base, sepolia],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
@@ -38,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider theme={darkTheme({
-          accentColor: '#0ea5e9',
+          accentColor: '#d97706',
           accentColorForeground: 'white',
           borderRadius: 'large',
           fontStack: 'system',

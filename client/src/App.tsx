@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
@@ -16,8 +17,9 @@ import Finance from './pages/Finance';
 import Library from './pages/Library';
 import { useAuth } from './AuthContext';
 
-function App() {
+const App = () => {
   const { user, loading } = useAuth();
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-slate-950">
@@ -34,10 +36,21 @@ function App() {
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-500/5 dark:bg-accent-950/20 rounded-full blur-[120px] animate-glow" style={{ animationDelay: '2s' }}></div>
         </div>
 
-        {user && <Sidebar />}
+        {user && (
+          <>
+            {/* Mobile Overlay */}
+            {isSidebarOpen && (
+              <div 
+                className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-30 lg:hidden"
+                onClick={() => setSidebarOpen(false)}
+              ></div>
+            )}
+            <Sidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
+          </>
+        )}
         
         <div className="flex-1 flex flex-col min-h-screen relative overflow-y-auto">
-          {user && <Header />}
+          {user && <Header onMenuClick={() => setSidebarOpen(true)} />}
           <main className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full">
             <Routes>
               <Route path="/" element={<Navigate to={user ? "/dashboard" : "/login"} replace />} />

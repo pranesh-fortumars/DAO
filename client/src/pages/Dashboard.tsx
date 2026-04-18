@@ -215,7 +215,7 @@ const RoleSpecificCard = ({ title, subtitle, icon, stats, action }: any) => (
         {action}
       </button>
     </div>
-    <div className="grid grid-cols-2 gap-8 relative z-10 border-t border-white/5 pt-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 relative z-10 border-t border-white/5 pt-6">
       {stats.map((s: any) => (
         <div key={s.label}>
           <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1">{s.label}</p>

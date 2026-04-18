@@ -1,10 +1,10 @@
-import { Bell, Search, Globe, ChevronDown, LogOut, Sun, Moon } from 'lucide-react';
+import { Bell, Search, Globe, ChevronDown, LogOut, Sun, Moon, Menu } from 'lucide-react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAuth } from '../AuthContext';
 import { useTheme } from '../ThemeContext';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
   const { logout, user } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
@@ -17,10 +17,13 @@ const Header = () => {
   return (
     <header 
       style={{ backgroundColor: 'var(--bg-header)', borderColor: 'var(--border-main)' }}
-      className="h-24 px-8 border-b flex items-center justify-between sticky top-0 backdrop-blur-xl z-20 transition-colors duration-300"
+      className="h-24 px-4 md:px-8 border-b flex items-center justify-between sticky top-0 backdrop-blur-xl z-20 transition-colors duration-300"
     >
-      <div className="flex items-center gap-6 flex-1">
-        <div className="relative group max-w-md w-full">
+      <div className="flex items-center gap-4 md:gap-6 flex-1">
+        <button onClick={onMenuClick} className="lg:hidden p-2 hover:bg-white/5 rounded-xl text-slate-400">
+          <Menu size={24} />
+        </button>
+        <div className="relative group max-w-md w-full hidden md:block">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary-400 transition-colors" size={18} />
           <input 
             type="text" 
