@@ -6,7 +6,8 @@ import {
   Plus, 
   Code2, 
   ChevronRight,
-  ShieldAlert
+  ShieldAlert,
+  BookOpen
 } from 'lucide-react';
 
 const CreateProposal = () => {
@@ -84,6 +85,19 @@ const CreateProposal = () => {
                   <div>
                     <h5 className="font-bold">Treasury Transfer</h5>
                     <p className="text-xs text-slate-500">Release ETH or ERC-20 tokens from the DAO treasury</p>
+                  </div>
+                </div>
+                <Plus size={20} className="text-slate-700 group-hover:text-primary-500" />
+              </div>
+
+              <div className="p-6 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between group hover:border-white/20 transition-all cursor-pointer">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-primary-500/10 transition-colors">
+                    <BookOpen className="text-slate-400 group-hover:text-primary-400" size={24} />
+                  </div>
+                  <div>
+                    <h5 className="font-bold">Course Approval</h5>
+                    <p className="text-xs text-slate-500">Approve a student-proposed course for the official curriculum</p>
                   </div>
                 </div>
                 <Plus size={20} className="text-slate-700 group-hover:text-primary-500" />

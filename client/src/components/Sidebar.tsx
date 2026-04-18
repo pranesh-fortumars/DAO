@@ -2,18 +2,20 @@ import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   FileText, 
-  PlusCircle, 
   Wallet, 
   BarChart3, 
   Settings, 
   ShieldCheck,
-  Zap
+  Zap,
+  BookOpen,
+  Award
 } from 'lucide-react';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-  { icon: FileText, label: 'Proposals', path: '/proposals' },
-  { icon: PlusCircle, label: 'Create Proposal', path: '/proposals/create' },
+  { icon: BookOpen, label: 'Courses', path: '/courses' },
+  { icon: FileText, label: 'Governance', path: '/proposals' },
+  { icon: Award, label: 'Certificates', path: '/certificates' },
   { icon: Wallet, label: 'Treasury', path: '/treasury' },
   { icon: BarChart3, label: 'Analytics', path: '/analytics' },
   { icon: Settings, label: 'Settings', path: '/settings' },
@@ -28,9 +30,9 @@ const Sidebar = () => {
         </div>
         <div className="flex flex-col">
           <span className="font-['Outfit'] font-bold text-xl tracking-tight bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent">
-            OMEGA DAO
+            EDU CONNECT
           </span>
-          <span className="text-[10px] uppercase tracking-widest text-primary-500 font-bold">Enterprise Logic</span>
+          <span className="text-[10px] uppercase tracking-widest text-primary-500 font-bold">DAO Ecosystem</span>
         </div>
       </div>
 

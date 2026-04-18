@@ -29,9 +29,9 @@ const data = [
 
 const stats = [
   { label: 'Total Value Locked', value: '$2,480,000', change: '+12.5%', icon: Database, color: 'text-primary-400', bg: 'bg-primary-500/10' },
-  { label: 'Active Proposals', value: '14', change: '+2 new', icon: FileCheck, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-  { label: 'Total Members', value: '12,450', change: '+450/mo', icon: Users, color: 'text-accent-400', bg: 'bg-accent-500/10' },
-  { label: 'Participation Rate', value: '68.2%', change: '+5.4%', icon: TrendingUp, color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
+  { label: 'Courses Completed', value: '452', change: '+12 new', icon: FileCheck, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+  { label: 'Governance Tokens Minted', value: '1.2M GDAO', change: '+45k/mo', icon: TrendingUp, color: 'text-accent-400', bg: 'bg-accent-500/10' },
+  { label: 'Active Learners', value: '3,842', change: '+5.4%', icon: Users, color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
 ];
 
 const Dashboard = () => {
@@ -39,8 +39,8 @@ const Dashboard = () => {
     <div className="space-y-8 pb-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl">Enterprise Overview</h1>
-          <p className="text-slate-500 mt-2 font-medium">Welcome back, Admin. Here's what's happening with the DAO today.</p>
+          <h1 className="text-4xl">EduConnect Dashboard</h1>
+          <p className="text-slate-500 mt-2 font-medium">Welcome back, Scholar. Track your learning progress and DAO governance impact.</p>
         </div>
         <div className="flex items-center gap-3">
           <button className="btn-secondary">Export Data</button>

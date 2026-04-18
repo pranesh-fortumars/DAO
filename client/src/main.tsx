@@ -21,6 +21,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { AuthProvider } from './AuthContext';
 
 const config = getDefaultConfig({
   appName: 'Enterprise DAO',
@@ -42,7 +43,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           fontStack: 'system',
           overlayBlur: 'small',
         })}>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
