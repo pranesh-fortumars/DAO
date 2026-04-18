@@ -48,10 +48,11 @@ const Attendance = () => {
 
   return (
     <div className="space-y-8 pb-10">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-['Outfit'] font-bold underline italic">Attendance Record</h1>
-          <p className="text-slate-500 mt-2 font-medium italic underline">Institutional roll call and compliance tracking.</p>
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-500 mb-3 block">Operational Monitoring</span>
+          <h1 className="text-5xl font-['Outfit'] font-bold tracking-tight">Attendance Record</h1>
+          <p className="text-slate-400 mt-3 font-medium text-lg">Legislative roll call and institutional compliance auditing.</p>
         </div>
         <div className="flex gap-3">
           <button className="btn-secondary">
@@ -94,21 +95,22 @@ const Attendance = () => {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
           <input 
             type="text" 
-            placeholder="Search student name or ID..." 
-            className="input-field pl-12"
+            placeholder="Search student identity..." 
+            className="input-field pl-14"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
         <select 
-          className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50"
+          className="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-sm font-bold text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30 transition-all cursor-pointer"
+          style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-main)', color: 'var(--text-main)' }}
           value={filterCourse}
           onChange={(e) => setFilterCourse(e.target.value)}
         >
-          <option>All Courses</option>
-          <option>Blockchain v4</option>
-          <option>Smart Contracts</option>
-          <option>DAO Governance</option>
+          <option value="All Courses">All Faculty Hubs</option>
+          <option value="Blockchain v4">Blockchain Engineering</option>
+          <option value="Smart Contracts">Smart Contracts</option>
+          <option value="DAO Governance">DAO Governance</option>
         </select>
       </div>
 
@@ -134,19 +136,20 @@ const Attendance = () => {
                   <motion.tr 
                     key={student.id}
                     layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="group hover:bg-white/[0.02] transition-colors"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="group hover:bg-white/[0.01] transition-colors border-b last:border-0"
+                    style={{ borderColor: 'var(--border-main)' }}
                   >
-                    <td className="px-8 py-5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-primary-500/10 flex items-center justify-center font-bold text-primary-400 border border-primary-500/20">
+                    <td className="px-8 py-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-11 h-11 rounded-2xl bg-primary-500/10 flex items-center justify-center font-bold text-primary-500 border border-primary-500/10 shadow-lg shadow-primary-500/5">
                           {student.name.charAt(0)}
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-white mb-0.5">{student.name}</p>
-                          <p className="text-[10px] text-slate-500">{student.id}</p>
+                          <p className="text-base font-bold tracking-tight mb-0.5" style={{ color: 'var(--text-main)' }}>{student.name}</p>
+                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{student.id}</p>
                         </div>
                       </div>
                     </td>

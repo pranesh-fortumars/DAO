@@ -2,12 +2,19 @@ import { Bell, Search, Globe, ChevronDown, LogOut, Sun, Moon, Menu } from 'lucid
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAuth } from '../AuthContext';
 import { useTheme } from '../ThemeContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
-  const { logout, user } = useAuth();
+  const { logout, user, role } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const getPageTitle = () => {
+    const path = location.pathname.split('/')[1];
+    if (!path) return 'Command Center';
+    return path.charAt(0).toUpperCase() + path.slice(1);
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -19,16 +26,26 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
       style={{ backgroundColor: 'var(--bg-header)', borderColor: 'var(--border-main)' }}
       className="h-24 px-4 md:px-8 border-b flex items-center justify-between sticky top-0 backdrop-blur-xl z-20 transition-colors duration-300"
     >
-      <div className="flex items-center gap-4 md:gap-6 flex-1">
-        <button onClick={onMenuClick} className="lg:hidden p-2 hover:bg-white/5 rounded-xl text-slate-400">
+      <div className="flex items-center gap-4 md:gap-10 flex-1">
+        <button onClick={onMenuClick} className="lg:hidden p-2.5 hover:bg-white/5 rounded-2xl text-slate-400 border border-white/5 shadow-sm">
           <Menu size={24} />
         </button>
-        <div className="relative group max-w-md w-full hidden md:block">
+        
+        <div className="hidden lg:flex flex-col">
+          <h2 className="text-xl font-bold font-['Outfit'] tracking-tight">{getPageTitle()}</h2>
+          <div className="flex items-center gap-2 text-[10px] text-slate-500 font-bold tracking-widest uppercase">
+            <span>Kalam DAO</span>
+            <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+            <span>{getPageTitle()}</span>
+          </div>
+        </div>
+
+        <div className="relative group max-w-sm w-full hidden xl:block">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary-400 transition-colors" size={18} />
           <input 
             type="text" 
-            placeholder="Search proposals, members, or transactions..." 
-            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all font-medium text-sm"
+            placeholder="Search institution records..." 
+            className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-2.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/20 transition-all font-medium text-xs text-white"
           />
         </div>
       </div>
@@ -54,6 +71,11 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
         </button>
 
         <div className="h-10 w-[1px] bg-white/5 mx-2"></div>
+
+        <div className="hidden sm:flex flex-col items-end mr-2">
+          <span className="text-[10px] font-black uppercase tracking-widest text-primary-500">Security Access</span>
+          <span className="text-xs font-bold text-slate-400 capitalize">{role?.toLowerCase() || 'Verified Account'}</span>
+        </div>
 
         <ConnectButton />
 

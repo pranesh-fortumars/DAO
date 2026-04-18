@@ -10,10 +10,12 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegister, setIsRegister] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(false);
   const { setRole } = useAuth();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async (selectedRole: 'ADMIN' | 'MENTOR' | 'SCHOOL') => {
+    setIsAuthLoading(true);
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
@@ -21,11 +23,14 @@ const Login = () => {
       navigate('/dashboard');
     } catch (error) {
       console.error("Auth Error:", error);
+    } finally {
+      setIsAuthLoading(false);
     }
   };
 
   const handleEmailAuth = async (e: React.FormEvent, selectedRole: 'ADMIN' | 'MENTOR' | 'SCHOOL') => {
     e.preventDefault();
+    setIsAuthLoading(true);
     try {
       if (isRegister) {
         await createUserWithEmailAndPassword(auth, email, password);
@@ -36,6 +41,8 @@ const Login = () => {
       navigate('/dashboard');
     } catch (error) {
       console.error("Auth Error:", error);
+    } finally {
+      setIsAuthLoading(false);
     }
   };
 
@@ -47,30 +54,33 @@ const Login = () => {
         className="glass-card max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-primary-500/10"
       >
         <div className="p-10 bg-primary-500/5 flex flex-col justify-center border-r border-slate-500/10">
-          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary-500 mb-2">Tamil Nadu Educational Trust</span>
-          <h2 className="text-4xl font-bold mb-6 italic underline leading-tight">KALAM EDUCATION DAO</h2>
-          <p className="text-slate-400 mb-8 leading-relaxed italic text-sm">
-            Empowering the students of Tamil Nadu through decentralized transparency. Select your gateway and enter the Mandram.
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-500 mb-3 block">Tamil Nadu Educational Trust</span>
+          <h2 className="text-4xl font-['Outfit'] font-bold mb-4 tracking-tighter leading-tight">KALAM EDUCATION DAO</h2>
+          <p className="text-slate-400 mb-10 leading-relaxed font-medium text-sm">
+            Empowering the students of Tamil Nadu through decentralized transparency. Select your gateway to enter the Mandram.
           </p>
           
           <div className="space-y-4">
             <RoleButton 
               icon={<Shield size={20} />} 
-              label="Administrator Portal" 
+              label="Trustee Portal" 
               onClick={() => handleGoogleSignIn('ADMIN')} 
-              className="bg-primary-500/10 text-primary-600 border-primary-500/20"
+              loading={isAuthLoading}
+              className="hover:border-primary-500/30"
             />
             <RoleButton 
               icon={<GraduationCap size={20} />} 
               label="Mentor Access" 
               onClick={() => handleGoogleSignIn('MENTOR')} 
-              className="bg-primary-400/5 text-primary-500 border-primary-500/10"
+              loading={isAuthLoading}
+              className="hover:border-primary-500/30"
             />
             <RoleButton 
               icon={<School size={20} />} 
-              label="School Governance" 
+              label="Institutional Board" 
               onClick={() => handleGoogleSignIn('SCHOOL')} 
-              className="bg-emerald-500/5 text-emerald-600 border-emerald-500/10"
+              loading={isAuthLoading}
+              className="hover:border-emerald-500/30"
             />
           </div>
         </div>
@@ -123,16 +133,16 @@ const Login = () => {
   );
 };
 
-const RoleButton = ({ icon, label, onClick, className }: any) => (
+const RoleButton = ({ icon, label, onClick, className, loading }: any) => (
   <button 
     onClick={onClick}
-    className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all hover:scale-[1.02] active:scale-95 ${className}`}
+    disabled={loading}
+    className={`w-full flex items-center gap-4 p-5 rounded-2xl border border-white/5 bg-white/[0.02] transition-all hover:bg-primary-500/5 hover:translate-x-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group ${className}`}
   >
-    <div className="p-2 rounded-lg bg-current opacity-10 absolute inset-0 -z-10"></div>
-    <div className="p-2 rounded-lg bg-primary-500/10">
+    <div className="p-3 rounded-xl bg-primary-500/10 text-primary-500 group-hover:scale-110 transition-transform">
       {icon}
     </div>
-    <span className="font-bold tracking-wide">{label}</span>
+    <span className="font-bold tracking-tight text-sm uppercase">{label}</span>
   </button>
 );
 

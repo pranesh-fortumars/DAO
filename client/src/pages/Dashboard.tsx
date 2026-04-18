@@ -21,16 +21,16 @@ const Dashboard = () => {
     <div className="space-y-8 pb-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary-500 mb-2 block">Institutional Command Center</span>
-          <h1 className="text-4xl font-['Outfit'] font-bold italic underline">Kalam DAO Dashboard</h1>
-          <p className="text-slate-500 mt-2 font-medium italic underline">Welcome back. Oversee your academic and governance activities.</p>
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-500 mb-3 block">Institutional Command Center</span>
+          <h1 className="text-5xl font-['Outfit'] font-bold tracking-tight">Kalam DAO Dashboard</h1>
+          <p className="text-slate-400 mt-3 font-medium text-lg">Oversee regional academic operations and governance consensus.</p>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 px-4 py-2 bg-primary-500/5 border border-primary-500/20 rounded-xl text-xs font-bold text-primary-400">
-            <MapPin size={14} />
-            Chennai Region
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5 px-5 py-2.5 bg-primary-500/5 border border-primary-500/10 rounded-2xl text-[10px] font-black uppercase tracking-widest text-primary-500 backdrop-blur-md">
+            <MapPin size={14} className="animate-pulse" />
+            Tamil Nadu • Chennai
           </div>
-          <button className="btn-primary shadow-primary-500/20">Audit Records</button>
+          <button className="btn-primary">Audit Records</button>
         </div>
       </div>
 
@@ -201,25 +201,25 @@ const StudentActivity = ({ name, action, time }: any) => (
 );
 
 const RoleSpecificCard = ({ title, subtitle, icon, stats, action }: any) => (
-  <div className="glass-card p-8 border-primary-500/20 bg-primary-950/30 relative overflow-hidden group mb-8">
-    <div className="absolute bottom-[-20%] right-[-10%] w-48 h-48 bg-primary-500/5 rounded-full blur-3xl transition-all group-hover:scale-110"></div>
-    <div className="flex items-center gap-6 mb-8 relative z-10">
-      <div className="p-4 bg-primary-500/10 rounded-2xl border border-primary-500/20 shadow-lg shadow-primary-500/10">
+  <div className="glass-card p-10 border-primary-500/10 bg-primary-950/5 relative overflow-hidden group mb-10">
+    <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div className="flex flex-col md:flex-row md:items-center gap-8 mb-10 relative z-10">
+      <div className="p-5 bg-primary-500/10 rounded-[1.5rem] border border-primary-500/20 shadow-2xl shadow-primary-500/5 group-hover:rotate-6 transition-transform duration-500 w-fit">
         {icon}
       </div>
       <div>
-        <h3 className="text-2xl font-bold font-['Outfit']">{title}</h3>
-        <p className="text-sm text-slate-500 font-medium">{subtitle}</p>
+        <h3 className="text-3xl font-bold font-['Outfit'] tracking-tight">{title}</h3>
+        <p className="text-base text-slate-500 font-medium mt-1 uppercase tracking-widest text-[11px]">{subtitle}</p>
       </div>
-      <button className="ml-auto px-6 py-2 bg-primary-500 text-white text-xs font-bold rounded-xl hover:bg-primary-400 transition-all shadow-lg shadow-primary-500/20">
+      <button className="md:ml-auto btn-primary !px-10">
         {action}
       </button>
     </div>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 relative z-10 border-t border-white/5 pt-6">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-10 relative z-10 border-t border-slate-500/10 pt-10">
       {stats.map((s: any) => (
         <div key={s.label}>
-          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1">{s.label}</p>
-          <p className="text-xl font-bold font-mono">{s.value}</p>
+          <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.2em] mb-2">{s.label}</p>
+          <p className="text-2xl font-bold font-mono tracking-tighter">{s.value}</p>
         </div>
       ))}
     </div>

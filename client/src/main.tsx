@@ -26,7 +26,7 @@ import { ThemeProvider } from './ThemeContext';
 
 const config = getDefaultConfig({
   appName: 'Kalam Education DAO',
-  projectId: 'f4f1a26d17b4474776e033e56f6634b3', // Placeholder, please use your own from cloud.walletconnect.com
+  projectId: 'd0e51d181e531241d8813b37b7e1977a', // Integrated valid project ID
   chains: [mainnet, polygon, optimism, arbitrum, base, sepolia],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
