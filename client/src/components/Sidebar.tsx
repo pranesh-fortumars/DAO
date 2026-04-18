@@ -25,30 +25,30 @@ const menuGroups = [
     title: 'Overview',
     items: [
       { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard', roles: ['ADMIN', 'MENTOR', 'SCHOOL'] },
-      { icon: BarChart3, label: 'Analytics', path: '/analytics', roles: ['ADMIN'] },
+      { icon: BarChart3, label: 'Analytics', path: '/analytics', roles: ['ADMIN', 'SCHOOL'] },
     ]
   },
   {
     title: 'Academics',
     items: [
       { icon: BookOpen, label: 'Curriculum', path: '/courses', roles: ['ADMIN', 'MENTOR', 'SCHOOL'] },
-      { icon: UserCheck, label: 'Attendance', path: '/attendance', roles: ['MENTOR', 'ADMIN'] },
+      { icon: UserCheck, label: 'Attendance', path: '/attendance', roles: ['MENTOR', 'ADMIN', 'SCHOOL'] },
       { icon: Library, label: 'Digital Library', path: '/library', roles: ['ADMIN', 'MENTOR', 'SCHOOL'] },
-      { icon: ClipboardList, label: 'Examinations', path: '/exams', roles: ['MENTOR', 'ADMIN'] },
+      { icon: ClipboardList, label: 'Examinations', path: '/exams', roles: ['MENTOR', 'ADMIN', 'SCHOOL'] },
     ]
   },
   {
     title: 'Governance',
     items: [
-      { icon: FileText, label: 'Proposals', path: '/proposals', roles: ['ADMIN', 'SCHOOL'] },
-      { icon: ShieldCheck, label: 'Compliance', path: '/compliance', roles: ['ADMIN'] },
+      { icon: FileText, label: 'Proposals', path: '/proposals', roles: ['ADMIN', 'SCHOOL', 'MENTOR'] },
+      { icon: ShieldCheck, label: 'Compliance', path: '/compliance', roles: ['ADMIN', 'SCHOOL'] },
       { icon: MessageSquare, label: 'Forum', path: '/forum', roles: ['ADMIN', 'MENTOR', 'SCHOOL'] },
     ]
   },
   {
     title: 'Financials',
     items: [
-      { icon: Wallet, label: 'Treasury', path: '/treasury', roles: ['ADMIN'] },
+      { icon: Wallet, label: 'Treasury', path: '/treasury', roles: ['ADMIN', 'SCHOOL'] },
       { icon: CreditCard, label: 'Operations', path: '/finance', roles: ['ADMIN', 'SCHOOL'] },
     ]
   },
@@ -77,7 +77,7 @@ const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) 
     <aside 
       className={`
         fixed inset-y-0 left-0 w-72 h-screen z-50 flex flex-col shadow-2xl transition-all duration-500 ease-in-out
-        lg:translate-x-0 lg:static lg:shadow-none
+        md:translate-x-0 md:static md:shadow-none
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}
       style={{ backgroundColor: 'var(--bg-sidebar)', borderRight: '1px solid var(--border-main)' }}

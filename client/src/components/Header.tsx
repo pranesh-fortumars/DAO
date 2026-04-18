@@ -1,4 +1,5 @@
 import { Bell, Search, Globe, ChevronDown, LogOut, Sun, Moon, Menu } from 'lucide-react';
+// Optimized Institutional Header Component - v2.4.1
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAuth } from '../AuthContext';
 import { useTheme } from '../ThemeContext';

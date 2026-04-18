@@ -105,17 +105,47 @@ const Dashboard = () => {
             />
           )}
 
-          <div className="glass-card p-10 relative overflow-hidden group border-white/5">
-             <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
-               <Flame className="text-primary-500 w-32 h-32 rotate-12" />
+          <div className="glass-card p-10 relative overflow-hidden group border-white/5 bg-primary-950/5">
+             <div className="absolute -top-10 -right-10 p-8 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+               <Vote className="text-primary-500 w-64 h-64 rotate-12" />
              </div>
-             <div className="relative z-10 max-w-lg">
-                <span className="bg-primary-500/10 text-primary-400 text-[10px] font-bold px-3 py-1 rounded-full border border-primary-500/20 uppercase tracking-widest">Ongoing Proposal</span>
-                <h2 className="text-3xl font-bold mt-6 leading-tight">Salem Technical Syllabus Upgrade is Open for Voting.</h2>
-                <p className="text-slate-400 mt-4 leading-relaxed font-medium">Proposal submitted by the Coimbatore Campus. All GDAO holders are eligible to participate in the on-chain consensus.</p>
-                <div className="flex gap-4 mt-8">
-                   <button className="btn-primary">Cast Vote</button>
-                   <button className="btn-secondary">View Details</button>
+             <div className="relative z-10">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-primary-500/10 text-primary-500 text-[10px] font-black px-4 py-1.5 rounded-full border border-primary-500/20 uppercase tracking-[0.2em] shadow-lg shadow-primary-500/5">Voting Active</span>
+                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">ID: #GDAO-204</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-primary-400 font-mono text-xs font-bold">
+                    <Flame size={14} className="animate-pulse" />
+                    24h Remaining
+                  </div>
+                </div>
+
+                <h2 className="text-3xl font-bold leading-tight font-['Outfit'] tracking-tight max-w-2xl">Salem Technical Syllabus Upgrade: Blockchain v4 Integration</h2>
+                <p className="text-slate-400 mt-4 leading-relaxed font-medium text-base max-w-2xl">Proposal submitted by the Coimbatore Campus. This legislative update requires a 60% quorum for institutional implementation.</p>
+
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="space-y-6">
+                    <VotingProgress label="For (Success)" value={72} color="bg-emerald-500" tally="842k GDAO" />
+                    <VotingProgress label="Against" value={18} color="bg-rose-500" tally="210k GDAO" />
+                    <VotingProgress label="Abstain" value={10} color="bg-slate-700" tally="116k GDAO" />
+                  </div>
+                  <div className="bg-white/[0.02] rounded-[2rem] p-8 border border-white/5 flex flex-col justify-center">
+                    <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.2em] mb-4">Quorum Progress</p>
+                    <div className="flex items-end gap-3 mb-2">
+                      <span className="text-4xl font-bold font-mono tracking-tighter">84.2%</span>
+                      <span className="text-xs text-emerald-400 font-bold mb-1.5">Reached</span>
+                    </div>
+                    <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-full bg-primary-500 shadow-lg shadow-primary-500/50" style={{ width: '84.2%' }}></div>
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-6 font-medium italic">Minimum 60% required for consensus validity.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 mt-12 pt-8 border-t border-white/5">
+                   <button className="btn-primary !px-12">Cast Your Vote</button>
+                   <button className="btn-secondary">Audit Proposal</button>
                 </div>
              </div>
           </div>
@@ -271,6 +301,21 @@ const PendingAction = ({ label, time, red }: any) => (
     <span className="text-slate-400 font-medium">{label}</span>
     <span className={`font-bold ${red ? 'text-rose-400' : 'text-slate-500'}`}>{time}</span>
   </li>
+);
+
+const VotingProgress = ({ label, value, color, tally }: any) => (
+  <div className="space-y-2">
+    <div className="flex justify-between items-end">
+      <div>
+        <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-1">{label}</p>
+        <p className="text-sm font-bold font-mono tracking-tight">{tally}</p>
+      </div>
+      <span className="text-sm font-bold font-mono">{value}%</span>
+    </div>
+    <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+      <div className={`h-full ${color} transition-all duration-1000`} style={{ width: `${value}%` }}></div>
+    </div>
+  </div>
 );
 
 export default Dashboard;
