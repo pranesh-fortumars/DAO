@@ -92,8 +92,8 @@ const Analytics = () => {
             <BarChart3 size={24} className="text-primary-400" />
             Participation Trends
           </h3>
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="h-[300px] w-full min-h-[300px] overflow-hidden">
+            <ResponsiveContainer width="99%" height="100%">
               <BarChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
                 <XAxis dataKey="name" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
@@ -112,8 +112,8 @@ const Analytics = () => {
             <Globe size={24} className="text-accent-400" />
             Voter Distribution
           </h3>
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="h-[300px] w-full min-h-[300px] overflow-hidden">
+            <ResponsiveContainer width="99%" height="100%">
               <LineChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
                 <XAxis dataKey="name" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />

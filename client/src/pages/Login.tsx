@@ -46,7 +46,7 @@ const Login = () => {
         animate={{ opacity: 1, y: 0 }}
         className="glass-card max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden border-primary-500/10"
       >
-        <div className="p-10 bg-gradient-to-br from-primary-600/10 to-accent-950/20 flex flex-col justify-center border-r border-white/5">
+        <div className="p-10 bg-primary-500/5 flex flex-col justify-center border-r border-slate-500/10">
           <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary-500 mb-2">Tamil Nadu Educational Trust</span>
           <h2 className="text-4xl font-bold mb-6 italic underline leading-tight">KALAM EDUCATION DAO</h2>
           <p className="text-slate-400 mb-8 leading-relaxed italic text-sm">
@@ -58,19 +58,19 @@ const Login = () => {
               icon={<Shield size={20} />} 
               label="Administrator Portal" 
               onClick={() => handleGoogleSignIn('ADMIN')} 
-              color="bg-primary-900/40 text-primary-400 border-primary-500/30"
+              className="bg-primary-500/10 text-primary-600 border-primary-500/20"
             />
             <RoleButton 
               icon={<GraduationCap size={20} />} 
               label="Mentor Access" 
               onClick={() => handleGoogleSignIn('MENTOR')} 
-              color="bg-primary-500/20 text-primary-300 border-primary-500/20"
+              className="bg-primary-400/5 text-primary-500 border-primary-500/10"
             />
             <RoleButton 
               icon={<School size={20} />} 
               label="School Governance" 
               onClick={() => handleGoogleSignIn('SCHOOL')} 
-              color="bg-emerald-900/40 text-emerald-400 border-emerald-500/20"
+              className="bg-emerald-500/5 text-emerald-600 border-emerald-500/10"
             />
           </div>
         </div>
@@ -123,12 +123,13 @@ const Login = () => {
   );
 };
 
-const RoleButton = ({ icon, label, onClick, color }: any) => (
+const RoleButton = ({ icon, label, onClick, className }: any) => (
   <button 
     onClick={onClick}
-    className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all hover:scale-[1.02] active:scale-95 ${color}`}
+    className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all hover:scale-[1.02] active:scale-95 ${className}`}
   >
-    <div className="p-2 rounded-lg bg-white/10">
+    <div className="p-2 rounded-lg bg-current opacity-10 absolute inset-0 -z-10"></div>
+    <div className="p-2 rounded-lg bg-primary-500/10">
       {icon}
     </div>
     <span className="font-bold tracking-wide">{label}</span>

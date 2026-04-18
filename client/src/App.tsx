@@ -27,11 +27,11 @@ function App() {
 
   return (
     <Router>
-      <div className="flex min-h-screen bg-slate-950 text-slate-100 overflow-hidden">
+      <div className="flex min-h-screen transition-colors duration-300 overflow-hidden" style={{ backgroundColor: 'var(--bg-main)', color: 'var(--text-main)' }}>
         {/* Background Gradients */}
         <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-900/20 rounded-full blur-[120px] animate-glow"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-900/10 rounded-full blur-[120px] animate-glow" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-500/10 dark:bg-primary-900/20 rounded-full blur-[120px] animate-glow"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-500/5 dark:bg-accent-950/20 rounded-full blur-[120px] animate-glow" style={{ animationDelay: '2s' }}></div>
         </div>
 
         {user && <Sidebar />}

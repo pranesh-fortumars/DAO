@@ -22,6 +22,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { AuthProvider } from './AuthContext';
+import { ThemeProvider } from './ThemeContext';
 
 const config = getDefaultConfig({
   appName: 'Enterprise DAO',
@@ -44,7 +45,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           overlayBlur: 'small',
         })}>
           <AuthProvider>
-            <App />
+            <ThemeProvider>
+              <App />
+            </ThemeProvider>
           </AuthProvider>
         </RainbowKitProvider>
       </QueryClientProvider>

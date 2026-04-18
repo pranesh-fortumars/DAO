@@ -59,7 +59,7 @@ const menuGroups = [
 
 const Sidebar = () => {
   return (
-    <aside className="w-72 h-screen glass-card !rounded-none !border-y-0 !border-l-0 border-r-white/10 flex flex-col z-20 sticky top-0">
+    <aside style={{ backgroundColor: 'var(--bg-sidebar)', borderColor: 'var(--border-main)' }} className="w-72 h-screen glass-card !rounded-none !border-y-0 !border-l-0 border-r flex flex-col z-20 sticky top-0">
       <div className="p-8 flex items-center gap-3">
         <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
           <Zap className="text-white fill-current" size={24} />
@@ -87,7 +87,7 @@ const Sidebar = () => {
                     flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 group
                     ${isActive 
                       ? 'bg-primary-500/10 text-primary-400 border border-primary-500/20' 
-                      : 'text-slate-500 hover:text-white hover:bg-white/5 border border-transparent'}
+                      : 'text-slate-500 hover:text-primary-500 hover:bg-primary-500/5 border border-transparent'}
                   `}
                 >
                   <item.icon size={18} className="transition-transform duration-300 group-hover:scale-110" />
@@ -105,7 +105,7 @@ const Sidebar = () => {
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <ShieldCheck size={18} className="text-emerald-400" />
-              <span className="text-sm font-semibold text-white">Trust Score: 98.4</span>
+              <span className="text-sm font-semibold">Trust Score: 98.4</span>
             </div>
             <div className="w-full bg-white/5 rounded-full h-1.5 mb-2">
               <div className="bg-gradient-to-r from-emerald-500 to-primary-500 h-full rounded-full w-[98%]"></div>
