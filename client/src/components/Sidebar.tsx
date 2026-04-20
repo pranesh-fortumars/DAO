@@ -82,21 +82,24 @@ const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) 
       `}
       style={{ backgroundColor: 'var(--bg-sidebar)', borderRight: '1px solid var(--border-main)' }}
     >
-      <div className="p-8 pb-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 bg-primary-600 rounded-2xl flex items-center justify-center shadow-xl shadow-primary-500/20 group hover:rotate-12 transition-transform duration-500 cursor-pointer">
-            <Zap className="text-white fill-current" size={26} />
+      <div className="p-8 pb-6 flex items-center justify-between border-b border-primary-500/5">
+        <div className="flex items-center gap-4 group">
+          <div className="relative">
+            <div className="absolute inset-0 bg-primary-500/40 blur-xl rounded-full scale-0 group-hover:scale-125 transition-transform duration-700 opacity-0 group-hover:opacity-100"></div>
+            <div className="relative w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center shadow-2xl shadow-primary-500/30 group-hover:rotate-[15deg] transition-all duration-500 cursor-pointer">
+              <Zap className="text-white fill-white/20" size={28} />
+            </div>
           </div>
           <div className="flex flex-col">
-            <span className="font-['Outfit'] font-bold text-2xl tracking-tighter bg-gradient-to-br from-primary-400 to-primary-600 bg-clip-text text-transparent leading-tight">
+            <span className="font-['Outfit'] font-extrabold text-2xl tracking-tighter bg-gradient-to-r from-white via-primary-200 to-primary-500 bg-clip-text text-transparent leading-none">
               KALAM DAO
             </span>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-primary-500 font-extrabold italic">Institutional Trust</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] text-primary-500/80 font-black mt-1.5">Institutional Hub</span>
           </div>
         </div>
         <button 
           onClick={onClose} 
-          className="lg:hidden p-2.5 hover:bg-white/5 rounded-xl text-slate-500 backdrop-blur-md border border-white/5 transition-colors"
+          className="lg:hidden p-3 hover:bg-white/10 rounded-2xl text-slate-500 transition-colors border border-white/5"
         >
           <X size={20} />
         </button>

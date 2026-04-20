@@ -40,28 +40,32 @@ const Dashboard = () => {
           value="98.4" 
           change="+2.4%" 
           icon={<ShieldCheck className="text-emerald-400" />} 
-          description="Community Governed"
+          description="Verification consensus active"
+          sparkline={[40, 20, 50, 40, 80, 60, 95]}
         />
         <StatCard 
           label="Active Mentors" 
           value="156" 
           change="+12" 
           icon={<Users className="text-primary-400" />} 
-          description="Expert Staff"
+          description="Institutional verified staff"
+          sparkline={[20, 30, 25, 45, 40, 55, 60]}
         />
         <StatCard 
-          label="Institutional Treasury" 
+          label="Treasury TVL" 
           value="1.2M GDAO" 
           change="+$45k" 
           icon={<CreditCard className="text-accent-400" />} 
-          description="DAO Assets"
+          description="Liquidity pool health: 100%"
+          sparkline={[60, 50, 70, 60, 80, 75, 90]}
         />
         <StatCard 
-          label="Governance Active" 
+          label="Quorum Active" 
           value="84%" 
           change="+5%" 
           icon={<Vote className="text-rose-400" />} 
-          description="Active Quorum"
+          description="Proposal consensus limit"
+          sparkline={[30, 40, 35, 50, 45, 70, 84]}
         />
       </div>
 
@@ -185,50 +189,53 @@ const Dashboard = () => {
         </div>
 
         <div className="space-y-8">
-           <div className="glass-card p-8 border-white/5 relative bg-accent-950/20">
-              <div className="absolute top-4 right-4 text-[10px] font-bold text-accent-500 italic">Thirukkural Insight</div>
-              <p className="text-base font-bold italic text-white mb-2 mt-4">"Karka Kasadara Karpavai Katrapin Nirkka Atharku Thaga"</p>
-              <p className="text-[10px] text-slate-500 italic">Learn clearly; after learning, stand by it.</p>
-           </div>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card p-8 border-white/5 relative bg-accent-950/20 overflow-hidden group"
+            >
+               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-30"></div>
+               <div className="absolute top-4 right-4 text-[10px] font-black uppercase tracking-[0.2em] text-accent-500/60">Thirukkural Insight</div>
+               <p className="text-xl font-bold italic text-white mb-3 mt-6 leading-relaxed">"Karka Kasadara Karpavai Katrapin Nirkka Atharku Thaga"</p>
+               <div className="flex items-center gap-3">
+                 <div className="h-[1px] w-8 bg-slate-700"></div>
+                 <p className="text-[11px] text-slate-500 font-medium uppercase tracking-widest">Chapter 40: Learning</p>
+               </div>
+            </motion.div>
 
-           <div className="glass-card p-8 border-white/5">
-              <h4 className="font-bold text-lg mb-6 flex items-center gap-2 font-['Outfit']">
-                <GraduationCap className="text-primary-400" size={20} />
-                Recent Student Activity
-              </h4>
-              <div className="space-y-6">
-                <StudentActivity name="Vignesh Kumar" action="Minted Certificate" time="2h ago" />
-                <StudentActivity name="Lakshmi Priya" action="Joined DAO" time="4h ago" />
-                <StudentActivity name="Abhishek Raj" action="Submitted Grant" time="6h ago" />
-              </div>
-           </div>
+            <div className="glass-card p-8 border-white/5 bg-primary-950/10">
+               <div className="flex items-center justify-between mb-8">
+                  <h4 className="font-bold text-lg flex items-center gap-3 font-['Outfit']">
+                    <Zap className="text-primary-500 animate-pulse" size={18} />
+                    On-chain Consensus Feed
+                  </h4>
+                  <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                    Live
+                  </span>
+               </div>
+               <div className="space-y-6 max-h-[320px] overflow-hidden relative">
+                 <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-slate-950/80 to-transparent z-10 pointer-events-none"></div>
+                 <TransactionItem type="VOTE" user="0x71...4F2" action="Voted For #GDAO-204" time="Just Now" />
+                 <TransactionItem type="MINT" user="0x3A...9E1" action="Minted Certificate #1204" time="2m ago" />
+                 <TransactionItem type="PROPOSAL" user="Salem Hub" action="Created Proposal #GDAO-205" time="14m ago" />
+                 <TransactionItem type="STAKE" user="0x9D...2B4" action="Staked 1,500 GDAO" time="2h ago" />
+               </div>
+            </div>
 
-           <div className="glass-card p-8 bg-rose-500/5 border-rose-500/10">
-              <div className="flex items-center gap-3 text-rose-400 mb-4 font-['Outfit']">
-                 <AlertCircle size={20} />
-                 <h4 className="font-bold">Pending Actions</h4>
+            <div className="glass-card p-10 bg-gradient-to-br from-primary-500/10 to-transparent border-primary-500/10 relative overflow-hidden group cursor-pointer">
+              <div className="absolute -bottom-12 -right-12 p-8 opacity-5 group-hover:scale-110 transition-transform duration-700">
+                <ShieldCheck className="text-primary-500 w-48 h-48" />
               </div>
-              <ul className="space-y-4">
-                 <PendingAction label="Library Audit" time="Salem Center" />
-                 <PendingAction label="Grant Disbursement" time="Madurai Center" />
-                 <PendingAction label="Vote on Proposal #88" time="Expiring" red />
-              </ul>
-           </div>
-        </div>
+              <h4 className="text-2xl font-bold font-['Outfit'] mb-2">Institutional Audit</h4>
+              <p className="text-slate-400 text-sm mb-8">Synchronize with state verification nodes.</p>
+              <button className="btn-primary w-full !py-4">Run Ledger Audit</button>
+            </div>
+         </div>
       </div>
     </div>
   );
 };
-
-const StudentActivity = ({ name, action, time }: any) => (
-  <div className="flex items-center justify-between border-b border-white/5 pb-4 last:border-0 last:pb-0">
-    <div>
-      <p className="text-sm font-bold text-white">{name}</p>
-      <p className="text-[10px] text-slate-500 font-medium uppercase tracking-widest">{action}</p>
-    </div>
-    <span className="text-[10px] text-slate-600 font-bold">{time}</span>
-  </div>
-);
 
 const RoleSpecificCard = ({ title, subtitle, icon, stats, action }: any) => (
   <div className="glass-card p-10 border-primary-500/10 bg-primary-950/5 relative overflow-hidden group mb-10">
@@ -256,27 +263,59 @@ const RoleSpecificCard = ({ title, subtitle, icon, stats, action }: any) => (
   </div>
 );
 
-const StatCard = ({ label, value, change, icon, description }: any) => (
+const StatCard = ({ label, value, change, icon, description, sparkline }: any) => (
   <motion.div 
-    whileHover={{ y: -5 }}
-    className="glass-card p-6 border-white/5 relative overflow-hidden"
+    whileHover={{ y: -8, scale: 1.02 }}
+    className="glass-card p-8 border-white/5 relative overflow-hidden group"
   >
-    <div className="relative z-10 flex flex-col gap-4">
+    <div className="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:scale-125 transition-transform duration-700">
+      {icon}
+    </div>
+    <div className="relative z-10 flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <div className="p-2.5 bg-white/5 rounded-xl border border-white/10">
+        <div className="p-3 bg-white/5 rounded-2xl border border-white/10 shadow-inner group-hover:bg-primary-500/10 transition-colors">
           {icon}
         </div>
-        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${change.startsWith('+') ? 'bg-emerald-500/10 text-emerald-400' : 'bg-primary-500/10 text-primary-400'}`}>
+        <span className={`text-[10px] font-black px-3 py-1 rounded-full ${change.startsWith('+') ? 'bg-emerald-500/10 text-emerald-400' : 'bg-primary-500/10 text-primary-400'}`}>
           {change}
         </span>
       </div>
       <div>
-        <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">{label}</p>
-        <h3 className="text-2xl font-bold font-['Outfit'] mt-1">{value}</h3>
+        <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">{label}</p>
+        <h3 className="text-3xl font-bold font-['Outfit'] tracking-tight">{value}</h3>
       </div>
-      <p className="text-[10px] text-slate-600 font-medium italic">{description}</p>
+      
+      {/* Mini Sparkline Visualization */}
+      <div className="h-10 w-full flex items-end gap-1 px-1">
+        {sparkline.map((h: number, i: number) => (
+          <div 
+            key={i} 
+            className="flex-1 bg-primary-500/20 rounded-t-sm group-hover:bg-primary-500/40 transition-all duration-500" 
+            style={{ height: `${h}%` }}
+          />
+        ))}
+      </div>
+
+      <p className="text-[10px] text-slate-500 font-bold tracking-wide">{description}</p>
     </div>
   </motion.div>
+);
+
+const TransactionItem = ({ type, user, action, time }: any) => (
+  <div className="flex items-center gap-4 group cursor-pointer py-2 hover:translate-x-2 transition-transform duration-500">
+    <div className={`p-2 rounded-lg border text-[10px] font-black w-14 text-center ${
+      type === 'VOTE' ? 'bg-rose-500/5 text-rose-400 border-rose-500/20' :
+      type === 'MINT' ? 'bg-emerald-500/5 text-emerald-400 border-emerald-500/20' :
+      'bg-primary-500/5 text-primary-400 border-primary-500/20'
+    }`}>
+      {type}
+    </div>
+    <div className="flex-1 min-w-0">
+      <p className="text-xs font-bold truncate text-white">{action}</p>
+      <p className="text-[10px] text-slate-500 font-mono">{user}</p>
+    </div>
+    <span className="text-[10px] text-slate-600 font-bold whitespace-nowrap">{time}</span>
+  </div>
 );
 
 const TimelineItem = ({ time, title, role, status, color }: any) => (
