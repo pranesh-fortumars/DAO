@@ -6,7 +6,6 @@ import {
   CreditCard,
   GraduationCap,
   Calendar,
-  AlertCircle,
   MapPin,
   Flame,
   Globe
@@ -152,6 +151,90 @@ const Dashboard = () => {
                    <button className="btn-secondary">Audit Proposal</button>
                 </div>
              </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Unique Feature 1: Regional Fund Distribution Map (SVG Visualization) */}
+            <div className="glass-card p-8 border-white/5 bg-primary-950/5 relative overflow-hidden group">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="font-bold text-lg font-['Outfit'] tracking-tight">Regional Distribution</h3>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">State-Wide Treasury Allocation</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-primary-500 animate-ping"></span>
+                  <span className="text-[10px] font-black text-primary-500 uppercase tracking-widest">Live Flow</span>
+                </div>
+              </div>
+              
+              <div className="relative h-64 flex items-center justify-center">
+                {/* Simplified TN Map Sketch using SVGs */}
+                <svg viewBox="0 0 200 300" className="h-full opacity-20 text-primary-500 fill-current group-hover:opacity-30 transition-opacity">
+                   <path d="M50,50 L150,50 L170,150 L130,250 L30,250 L10,150 Z" />
+                </svg>
+                {/* District Data Pins */}
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2">
+                   <MapPinPoint label="Chennai" value="₹4.2 Cr" delayed />
+                </div>
+                <div className="absolute top-1/2 left-1/3">
+                   <MapPinPoint label="Salem" value="₹1.8 Cr" />
+                </div>
+                <div className="absolute bottom-1/4 right-1/4">
+                   <MapPinPoint label="Madurai" value="₹2.5 Cr" delayed />
+                </div>
+                <div className="absolute top-1/3 right-1/3">
+                   <MapPinPoint label="Trichy" value="₹1.1 Cr" />
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 gap-4">
+                 <div className="space-y-1">
+                   <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest">Active Hubs</p>
+                   <p className="text-xl font-bold font-mono">24</p>
+                 </div>
+                 <div className="space-y-1">
+                   <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest">Total Distributed</p>
+                   <p className="text-xl font-bold font-mono text-emerald-400">₹14.8 Cr</p>
+                 </div>
+              </div>
+            </div>
+
+            {/* Unique Feature 2: Blockchain Verification Terminal */}
+            <div className="glass-card p-8 border-white/5 bg-slate-950/20 relative group">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="font-bold text-lg font-['Outfit'] tracking-tight">Ledger Verifier</h3>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Instant On-chain Audit</p>
+                </div>
+                <ShieldCheck className="text-emerald-500 opacity-40" size={24} />
+              </div>
+              
+              <div className="space-y-4">
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    placeholder="Enter TX Hash or Identity ID..." 
+                    className="w-full bg-slate-900 border border-white/10 rounded-xl py-3 px-4 text-xs font-mono text-primary-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                  />
+                  <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-primary-500/10 text-primary-400 rounded-lg hover:bg-primary-500 transition-all hover:text-white">
+                    <Zap size={14} />
+                  </button>
+                </div>
+                
+                <div className="bg-black/40 rounded-xl p-5 border border-white/5 font-mono text-[10px] space-y-2 opacity-80 h-32 overflow-hidden overflow-y-auto custom-scrollbar">
+                   <p className="text-emerald-400 animate-pulse">{'>'} Initializing audit terminal...</p>
+                   <p className="text-slate-500">Connecting to Sepolia RPC...</p>
+                   <p className="text-slate-500">Block height: #482,921</p>
+                   <p className="text-slate-500">Gas price: 12.4 gwei</p>
+                   <p className="text-primary-500">{'>'} Ready for institutional verification.</p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex gap-3">
+                 <button className="flex-1 bg-white/5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all">Export Report</button>
+                 <button className="flex-1 bg-emerald-500/10 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all">Verify Batch</button>
+              </div>
+            </div>
           </div>
 
           <div className="glass-card border-white/5">
@@ -335,11 +418,21 @@ const TimelineItem = ({ time, title, role, status, color }: any) => (
   </div>
 );
 
-const PendingAction = ({ label, time, red }: any) => (
-  <li className="flex items-center justify-between text-[11px] transition-transform hover:translate-x-1 duration-300 cursor-pointer">
-    <span className="text-slate-400 font-medium">{label}</span>
-    <span className={`font-bold ${red ? 'text-rose-400' : 'text-slate-500'}`}>{time}</span>
-  </li>
+
+
+const MapPinPoint = ({ label, value, delayed }: any) => (
+  <motion.div 
+    initial={{ scale: 0 }}
+    animate={{ scale: 1 }}
+    transition={{ delay: delayed ? 1 : 0.5 }}
+    className="flex flex-col items-center group cursor-pointer"
+  >
+    <div className="w-1.5 h-1.5 rounded-full bg-primary-500 shadow-[0_0_10px_rgba(217,119,6,0.6)] animate-pulse mb-1 group-hover:scale-150 transition-transform"></div>
+    <div className="opacity-0 group-hover:opacity-100 transition-all absolute top-[-30px] bg-slate-900 border border-primary-500/30 px-3 py-1 rounded-lg pointer-events-none z-20 shadow-2xl">
+       <p className="text-[10px] font-black text-white whitespace-nowrap">{label}</p>
+       <p className="text-[9px] text-primary-500 font-bold">{value}</p>
+    </div>
+  </motion.div>
 );
 
 const VotingProgress = ({ label, value, color, tally }: any) => (
