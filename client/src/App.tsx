@@ -45,6 +45,7 @@ const AppContent = ({ user, loading, isSidebarOpen, setSidebarOpen }: any) => {
 
   return (
     <div className="flex min-h-screen transition-colors duration-300 overflow-hidden" style={{ backgroundColor: 'var(--bg-main)', color: 'var(--text-main)' }}>
+      <div className="vitality-mesh"></div>
       {/* Background Gradients */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-500/10 dark:bg-primary-900/20 rounded-full blur-[120px] animate-glow"></div>

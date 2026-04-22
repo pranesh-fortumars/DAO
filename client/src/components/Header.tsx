@@ -46,7 +46,7 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
           <input 
             type="text" 
             placeholder="Search institution records..." 
-            className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-2.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/20 transition-all font-medium text-xs text-white"
+            className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-2.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/20 transition-all font-medium text-xs text-[var(--text-main)]"
           />
         </div>
 
@@ -55,7 +55,7 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
                 <Zap size={14} className="text-amber-500 group-hover:scale-110 transition-transform" />
                 <div className="flex flex-col">
                    <span className="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Gas Price</span>
-                   <span className="text-[10px] font-black font-mono text-white">12 Gwei</span>
+                   <span className="text-[10px] font-black font-mono text-[var(--text-main)]">12 Gwei</span>
                 </div>
              </div>
              <div className="w-[1px] h-4 bg-white/10"></div>
@@ -63,7 +63,7 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
                 <TrendingUp size={14} className="text-emerald-500 group-hover:translate-y-[-2px] transition-transform" />
                 <div className="flex flex-col">
                    <span className="text-[8px] font-black text-slate-500 uppercase tracking-tighter">TPS</span>
-                   <span className="text-[10px] font-black font-mono text-white">4.2k</span>
+                   <span className="text-[10px] font-black font-mono text-[var(--text-main)]">4.2k</span>
                 </div>
              </div>
         </div>
@@ -72,13 +72,13 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
       <div className="flex items-center gap-5">
         <button 
           onClick={toggleTheme}
-          className="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-slate-400 hover:text-white transition-all"
+          className="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-slate-400 hover:text-[var(--text-main)] transition-all"
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         >
           {theme === 'dark' ? <Sun size={20} className="text-amber-400" /> : <Moon size={20} className="text-primary-600" />}
         </button>
 
-        <button className="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-slate-400 hover:text-white transition-all relative">
+        <button className="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-slate-400 hover:text-[var(--text-main)] transition-all relative">
           <Bell size={20} />
           <span className="absolute top-2.5 right-2.5 w-3 h-3 bg-accent-500 border-2 border-slate-950 rounded-full"></span>
         </button>
