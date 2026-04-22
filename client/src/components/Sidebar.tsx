@@ -154,7 +154,7 @@ const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) 
         )}
       </nav>
 
-      <div className="p-6">
+      <div className="p-6 space-y-6">
         <motion.div 
           whileHover={{ y: -5 }}
           className="glass-card bg-primary-950/20 border-primary-500/10 p-6 relative overflow-hidden group cursor-pointer"
@@ -165,23 +165,35 @@ const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) 
               <div className="p-2 bg-emerald-500/10 rounded-lg">
                 <ShieldCheck size={18} className="text-emerald-400" />
               </div>
-              <span className="text-sm font-bold tracking-tight">Trust Score: 98.4</span>
+              <span className="text-sm font-bold tracking-tight">System Security</span>
             </div>
-            <div className="w-full bg-white/5 rounded-full h-1.5 mb-3 overflow-hidden">
-              <div className="bg-gradient-to-r from-emerald-500 via-primary-500 to-primary-400 h-full rounded-full w-[98%] shadow-[0_0_10px_rgba(16,185,129,0.3)]"></div>
+            <div className="space-y-3">
+               <div className="flex justify-between items-center text-[10px] font-bold">
+                  <span className="text-slate-500 uppercase tracking-widest">Protocol Audit</span>
+                  <span className="text-emerald-400">PASSED</span>
+               </div>
+               <div className="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                  <div className="bg-emerald-500 h-full w-full shadow-[0_0_10px_rgba(16,185,129,0.3)]"></div>
+               </div>
+               <div className="flex justify-between items-center text-[10px] font-bold">
+                  <span className="text-slate-500 uppercase tracking-widest">Contract Status</span>
+                  <span className="text-primary-400">STABLE</span>
+               </div>
             </div>
-            <p className="text-[11px] text-slate-500 leading-relaxed font-medium italic">
-              Verification consensus completed.
-            </p>
           </div>
         </motion.div>
         
-        <div className="mt-8 flex items-center justify-between px-2">
-          <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Enterprise • V2.4</span>
-          <div className="flex gap-1">
-             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/40"></div>
-          </div>
+        <div className="flex flex-col gap-4 px-2">
+           <div className="flex items-center justify-between">
+              <span className="text-[10px] font-black text-slate-700 uppercase tracking-widest">Enterprise • V2.4.8</span>
+              <div className="flex gap-1">
+                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/40"></div>
+              </div>
+           </div>
+           <p className="text-[9px] text-slate-600 font-medium italic leading-relaxed">
+             Institutional Ledger Synchronization: 100%
+           </p>
         </div>
       </div>
     </aside>

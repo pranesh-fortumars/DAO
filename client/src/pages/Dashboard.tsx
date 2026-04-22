@@ -8,19 +8,22 @@ import {
   Calendar,
   MapPin,
   Flame,
-  Globe
+  Globe,
+  Trophy,
+  Star,
+  Award
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../AuthContext';
 
 const Dashboard = () => {
-  const { role } = useAuth();
+  const { role, user } = useAuth();
 
   return (
     <div className="space-y-8 pb-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-500 mb-3 block">Institutional Command Center</span>
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary-500 mb-3 block text-gradient-primary">Institutional Command Center</span>
           <h1 className="text-5xl font-['Outfit'] font-bold tracking-tight">Kalam DAO Dashboard</h1>
           <p className="text-slate-400 mt-3 font-medium text-lg">Oversee regional academic operations and governance consensus.</p>
         </div>
@@ -36,8 +39,8 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <StatCard 
           label="Trust Score" 
-          value="98.4" 
-          change="+2.4%" 
+          value="99.2" 
+          change="+0.8%" 
           icon={<ShieldCheck className="text-emerald-400" />} 
           description="Verification consensus active"
           sparkline={[40, 20, 50, 40, 80, 60, 95]}
@@ -95,9 +98,9 @@ const Dashboard = () => {
               action="Grade Students"
             />
           )}
-          {role === 'SCHOOL' && (
+          {['SCHOOL', 'USER', 'STUDENT'].includes(role || '') && (
             <RoleSpecificCard 
-              title="School Management"
+              title="Institutional Portal"
               subtitle="Campus Resources & Voting"
               icon={<Globe className="text-emerald-400" />}
               stats={[
@@ -110,7 +113,7 @@ const Dashboard = () => {
 
           <div className="glass-card p-10 relative overflow-hidden group border-white/5 bg-primary-950/5">
              <div className="absolute -top-10 -right-10 p-8 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-               <Vote className="text-primary-500 w-64 h-64 rotate-12" />
+                <Vote className="text-primary-500 w-64 h-64 rotate-12" />
              </div>
              <div className="relative z-10">
                 <div className="flex items-center justify-between mb-8">
@@ -154,7 +157,6 @@ const Dashboard = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Unique Feature 1: Regional Fund Distribution Map (SVG Visualization) */}
             <div className="glass-card p-8 border-white/5 bg-primary-950/5 relative overflow-hidden group">
               <div className="flex items-center justify-between mb-8">
                 <div>
@@ -168,11 +170,9 @@ const Dashboard = () => {
               </div>
               
               <div className="relative h-64 flex items-center justify-center">
-                {/* Simplified TN Map Sketch using SVGs */}
                 <svg viewBox="0 0 200 300" className="h-full opacity-20 text-primary-500 fill-current group-hover:opacity-30 transition-opacity">
                    <path d="M50,50 L150,50 L170,150 L130,250 L30,250 L10,150 Z" />
                 </svg>
-                {/* District Data Pins */}
                 <div className="absolute top-1/4 left-1/2 -translate-x-1/2">
                    <MapPinPoint label="Chennai" value="₹4.2 Cr" delayed />
                 </div>
@@ -199,7 +199,6 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Unique Feature 2: Blockchain Verification Terminal */}
             <div className="glass-card p-8 border-white/5 bg-slate-950/20 relative group">
               <div className="flex items-center justify-between mb-8">
                 <div>
@@ -287,24 +286,44 @@ const Dashboard = () => {
             </motion.div>
 
             <div className="glass-card p-8 border-white/5 bg-primary-950/10">
-               <div className="flex items-center justify-between mb-8">
-                  <h4 className="font-bold text-lg flex items-center gap-3 font-['Outfit']">
-                    <Zap className="text-primary-500 animate-pulse" size={18} />
-                    On-chain Consensus Feed
-                  </h4>
-                  <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                    Live
-                  </span>
-               </div>
-               <div className="space-y-6 max-h-[320px] overflow-hidden relative">
-                 <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-slate-950/80 to-transparent z-10 pointer-events-none"></div>
-                 <TransactionItem type="VOTE" user="0x71...4F2" action="Voted For #GDAO-204" time="Just Now" />
-                 <TransactionItem type="MINT" user="0x3A...9E1" action="Minted Certificate #1204" time="2m ago" />
-                 <TransactionItem type="PROPOSAL" user="Salem Hub" action="Created Proposal #GDAO-205" time="14m ago" />
-                 <TransactionItem type="STAKE" user="0x9D...2B4" action="Staked 1,500 GDAO" time="2h ago" />
-               </div>
-            </div>
+                <div className="flex items-center justify-between mb-8">
+                   <h4 className="font-bold text-lg flex items-center gap-3 font-['Outfit']">
+                     <Zap className="text-primary-500 animate-pulse" size={18} />
+                     On-chain Consensus Feed
+                   </h4>
+                   <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                     Live
+                   </span>
+                </div>
+                <div className="space-y-6 max-h-[320px] overflow-hidden relative">
+                  <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-slate-950/80 to-transparent z-10 pointer-events-none"></div>
+                  <TransactionItem type="VOTE" user="0x71...4F2" action="Voted For #GDAO-204" time="Just Now" />
+                  <TransactionItem type="MINT" user="0x3A...9E1" action="Minted Certificate #1204" time="2m ago" />
+                  <TransactionItem type="PROPOSAL" user="Salem Hub" action="Created Proposal #GDAO-205" time="14m ago" />
+                  <TransactionItem type="STAKE" user="0x9D...2B4" action="Staked 1,500 GDAO" time="2h ago" />
+                </div>
+             </div>
+
+             <div className="glass-card p-8 border-white/5 bg-amber-950/5 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:rotate-12 transition-transform">
+                   <Trophy size={80} />
+                </div>
+                <div className="flex items-center justify-between mb-8 relative z-10">
+                   <h4 className="font-bold text-lg flex items-center gap-3 font-['Outfit']">
+                     <Trophy className="text-amber-500" size={18} />
+                     Institutional Hall of Fame
+                   </h4>
+                   <button className="text-[10px] font-black text-slate-500 hover:text-white transition-colors uppercase tracking-widest">Global Rank</button>
+                </div>
+                <div className="space-y-4 relative z-10">
+                   <LeaderboardItem name="Arjun M." role="Lead Mentor" points={12400} rank={1} avatar="AM" color="bg-amber-500" />
+                   <LeaderboardItem name="Deepika K." role="Blockchain Dev" points={10200} rank={2} avatar="DK" color="bg-slate-400" />
+                   <LeaderboardItem name="Senthil R." role="Governance Expert" points={9800} rank={3} avatar="SR" color="bg-amber-700" />
+                   <LeaderboardItem name="Meera G." role="Senior Student" points={8500} rank={4} avatar="MG" color="bg-primary-500/20" />
+                </div>
+                <button className="w-full mt-8 py-3 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all relative z-10">Submit Portfolio</button>
+             </div>
 
             <div className="glass-card p-10 bg-gradient-to-br from-primary-500/10 to-transparent border-primary-500/10 relative overflow-hidden group cursor-pointer">
               <div className="absolute -bottom-12 -right-12 p-8 opacity-5 group-hover:scale-110 transition-transform duration-700">
@@ -368,7 +387,6 @@ const StatCard = ({ label, value, change, icon, description, sparkline }: any) =
         <h3 className="text-3xl font-bold font-['Outfit'] tracking-tight">{value}</h3>
       </div>
       
-      {/* Mini Sparkline Visualization */}
       <div className="h-10 w-full flex items-end gap-1 px-1">
         {sparkline.map((h: number, i: number) => (
           <div 
@@ -418,8 +436,6 @@ const TimelineItem = ({ time, title, role, status, color }: any) => (
   </div>
 );
 
-
-
 const MapPinPoint = ({ label, value, delayed }: any) => (
   <motion.div 
     initial={{ scale: 0 }}
@@ -446,6 +462,25 @@ const VotingProgress = ({ label, value, color, tally }: any) => (
     </div>
     <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
       <div className={`h-full ${color} transition-all duration-1000`} style={{ width: `${value}%` }}></div>
+    </div>
+  </div>
+);
+
+const LeaderboardItem = ({ name, role, points, rank, avatar, color }: any) => (
+  <div className="flex items-center gap-4 group cursor-pointer p-2 rounded-2xl hover:bg-white/[0.02] transition-all">
+    <div className={`w-10 h-10 rounded-xl ${color} flex items-center justify-center text-xs font-black shadow-lg shadow-black/20 group-hover:scale-110 transition-transform`}>
+      {avatar}
+    </div>
+    <div className="flex-1 min-w-0">
+      <div className="flex items-center gap-2">
+        <p className="text-sm font-bold truncate text-white">{name}</p>
+        {rank <= 3 && <Star size={10} className="text-amber-500 fill-amber-500" />}
+      </div>
+      <p className="text-[10px] text-slate-500 font-medium">{role}</p>
+    </div>
+    <div className="text-right">
+      <p className="text-xs font-black font-mono text-white">{points.toLocaleString()}</p>
+      <p className="text-[8px] text-slate-600 font-bold uppercase tracking-widest">GDAO Points</p>
     </div>
   </div>
 );

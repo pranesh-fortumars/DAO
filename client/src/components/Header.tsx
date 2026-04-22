@@ -1,4 +1,4 @@
-import { Bell, Search, Globe, ChevronDown, LogOut, Sun, Moon, Menu } from 'lucide-react';
+import { Bell, Search, Globe, ChevronDown, LogOut, Sun, Moon, Menu, Zap, TrendingUp } from 'lucide-react';
 // Optimized Institutional Header Component - v2.4.1
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAuth } from '../AuthContext';
@@ -48,6 +48,24 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => {
             placeholder="Search institution records..." 
             className="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-2.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/20 transition-all font-medium text-xs text-white"
           />
+        </div>
+
+        <div className="hidden sm:flex items-center gap-6 px-5 py-2.5 bg-white/[0.03] rounded-2xl border border-white/5">
+             <div className="flex items-center gap-2 group cursor-help">
+                <Zap size={14} className="text-amber-500 group-hover:scale-110 transition-transform" />
+                <div className="flex flex-col">
+                   <span className="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Gas Price</span>
+                   <span className="text-[10px] font-black font-mono text-white">12 Gwei</span>
+                </div>
+             </div>
+             <div className="w-[1px] h-4 bg-white/10"></div>
+             <div className="flex items-center gap-2 group cursor-help">
+                <TrendingUp size={14} className="text-emerald-500 group-hover:translate-y-[-2px] transition-transform" />
+                <div className="flex flex-col">
+                   <span className="text-[8px] font-black text-slate-500 uppercase tracking-tighter">TPS</span>
+                   <span className="text-[10px] font-black font-mono text-white">4.2k</span>
+                </div>
+             </div>
         </div>
       </div>
 
