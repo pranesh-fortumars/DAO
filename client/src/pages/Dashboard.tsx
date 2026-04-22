@@ -10,14 +10,13 @@ import {
   Flame,
   Globe,
   Trophy,
-  Star,
-  Award
+  Star
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../AuthContext';
 
 const Dashboard = () => {
-  const { role, user } = useAuth();
+  const { role } = useAuth();
 
   return (
     <div className="space-y-8 pb-10">
