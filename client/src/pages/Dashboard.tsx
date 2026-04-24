@@ -1,14 +1,11 @@
-import { 
-  Users, 
-  Vote, 
-  Zap,
-  ShieldCheck,
-  CreditCard,
-  GraduationCap,
-  MapPin,
-  Globe,
   Trophy,
-  Star
+  Star,
+  Zap,
+  Award,
+  Cpu,
+  BadgeCheck,
+  Shapes,
+  Boxes
 } from 'lucide-react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useAuth } from '../AuthContext';
@@ -223,6 +220,41 @@ const Dashboard = () => {
         </div>
 
         <div className="space-y-10">
+             <motion.div 
+              whileHover={{ y: -10 }}
+              className="glass-card p-10 border-white/[0.03] bg-gradient-to-br from-indigo-500/10 to-transparent relative overflow-hidden group"
+            >
+               <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:rotate-12 transition-transform duration-1000">
+                  <BadgeCheck size={120} />
+               </div>
+               <div className="flex items-center justify-between mb-8 relative z-10">
+                  <h4 className="font-extrabold text-xl flex items-center gap-4 font-['Outfit'] tracking-tight">
+                    <BadgeCheck className="text-indigo-400" size={20} />
+                    Soulbound Portfolio
+                  </h4>
+                  <span className="text-[10px] font-black text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Level 24</span>
+               </div>
+               
+               <div className="grid grid-cols-4 gap-4 mb-10 relative z-10">
+                  <PortfolioBadge icon={<Shapes size={16} />} color="emerald" label="Mentor" />
+                  <PortfolioBadge icon={<Cpu size={16} />} color="blue" label="Developer" />
+                  <PortfolioBadge icon={<Boxes size={16} />} color="amber" label="Gov" />
+                  <PortfolioBadge icon={<Star size={16} />} color="rose" label="Elite" />
+               </div>
+
+               <div className="space-y-4 relative z-10">
+                  <div className="flex justify-between text-[11px] font-black uppercase tracking-widest">
+                     <span className="text-slate-500">Reputation XP</span>
+                     <span className="text-white">12,400 / 15,000</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden shadow-inner">
+                     <div className="h-full bg-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.5)]" style={{ width: '82%' }}></div>
+                  </div>
+               </div>
+               
+               <button className="w-full mt-10 py-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all">Verify All Badges</button>
+            </motion.div>
+
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -476,5 +508,21 @@ const VotingProgress = ({ label, value, color, tally }: any) => (
     </div>
   </div>
 );
+
+const PortfolioBadge = ({ icon, color, label }: any) => {
+  const colors: any = {
+    emerald: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    blue: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    amber: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+    rose: "bg-rose-500/20 text-rose-400 border-rose-500/30"
+  };
+
+  return (
+    <div className={`aspect-square rounded-2xl border ${colors[color]} flex flex-col items-center justify-center gap-2 group cursor-pointer hover:scale-110 transition-transform`}>
+      {icon}
+      <span className="text-[8px] font-black uppercase tracking-tighter">{label}</span>
+    </div>
+  );
+};
 
 export default Dashboard;

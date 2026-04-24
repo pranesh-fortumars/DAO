@@ -15,7 +15,11 @@ import {
   ClipboardList,
   UserCheck,
   X,
-  ChevronRight
+  ChevronRight,
+  Cpu,
+  BrainCircuit,
+  Terminal,
+  Activity
 } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 import { motion } from 'framer-motion';
@@ -64,9 +68,7 @@ const menuGroups = [
 const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
   const { role, loading, user } = useAuth();
 
-  // Robust filtering: If no role is found yet but user is logged in, 
-  // we show a base menu for institutional members (Dashboard, Forum, Settings)
-  const activeRole = role || (user ? 'ADMIN' : null); // Fallback to ADMIN for owner/dev convenience
+  const activeRole = role || (user ? 'ADMIN' : null);
 
   const filteredMenu = menuGroups.map(group => ({
     ...group,
@@ -157,39 +159,42 @@ const Sidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) 
       <div className="p-6 space-y-6">
         <motion.div 
           whileHover={{ y: -5 }}
-          className="glass-card bg-primary-950/20 border-primary-500/10 p-6 relative overflow-hidden group cursor-pointer"
+          className="glass-card bg-primary-500/5 border-primary-500/10 p-5 group cursor-pointer hover:bg-primary-500/10 transition-all overflow-hidden relative"
         >
-          <div className="absolute -top-10 -right-10 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl group-hover:bg-primary-500/20 transition-all"></div>
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-emerald-500/10 rounded-lg">
-                <ShieldCheck size={18} className="text-emerald-400" />
-              </div>
-              <span className="text-sm font-bold tracking-tight">System Security</span>
+          <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 group-hover:rotate-12 transition-all">
+             <BrainCircuit size={64} />
+          </div>
+          <div className="flex items-center gap-3 mb-4 relative z-10">
+            <div className="p-2 bg-primary-500/10 rounded-lg text-primary-500">
+              <Cpu size={16} className="animate-pulse" />
             </div>
-            <div className="space-y-3">
-               <div className="flex justify-between items-center text-[10px] font-bold">
-                  <span className="text-slate-500 uppercase tracking-widest">Protocol Audit</span>
-                  <span className="text-emerald-400">PASSED</span>
-               </div>
-               <div className="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
-                  <div className="bg-emerald-500 h-full w-full shadow-[0_0_10px_rgba(16,185,129,0.3)]"></div>
-               </div>
-               <div className="flex justify-between items-center text-[10px] font-bold">
-                  <span className="text-slate-500 uppercase tracking-widest">Contract Status</span>
-                  <span className="text-primary-400">STABLE</span>
-               </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-primary-400">Kalam AI Assistant</p>
+              <p className="text-[9px] text-slate-500 font-bold">Strategic Intelligence v1.0</p>
             </div>
+          </div>
+          <div className="space-y-3 relative z-10">
+            <div className="flex justify-between items-center text-[10px] font-bold">
+              <span className="text-slate-400">Intelligence Index</span>
+              <span className="text-emerald-400">98.4%</span>
+            </div>
+            <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-full bg-emerald-500 w-[98.4%]"></div>
+            </div>
+            <button className="w-full py-2 bg-primary-500 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary-500/20 mt-2 flex items-center justify-center gap-2">
+              <Terminal size={12} />
+              Ask Strategic AI
+            </button>
           </div>
         </motion.div>
         
         <div className="flex flex-col gap-4 px-2">
            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-black text-slate-700 uppercase tracking-widest">Enterprise • V2.4.8</span>
-              <div className="flex gap-1">
-                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/40"></div>
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Protocol Health: Optimal</span>
               </div>
+              <span className="text-[9px] font-black text-slate-700 uppercase tracking-widest">v2.5.2</span>
            </div>
            <p className="text-[9px] text-slate-600 font-medium italic leading-relaxed">
              Institutional Ledger Synchronization: 100%
