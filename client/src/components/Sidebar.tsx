@@ -18,8 +18,7 @@ import {
   ChevronRight,
   Cpu,
   BrainCircuit,
-  Terminal,
-  Activity
+  Terminal
 } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 import { motion } from 'framer-motion';
